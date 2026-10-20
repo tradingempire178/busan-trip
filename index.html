@@ -106,6 +106,11 @@ section{scroll-margin-top:60px}
 .stop li::marker{color:var(--dc)}
 .rating{font-size:13px;font-weight:700}
 .rating span{color:var(--muted);font-weight:500}
+.hours{font-size:13.5px;font-weight:600}
+.hours.unk{color:var(--muted);font-weight:500}
+.closedlabel{padding:2px 8px;border-radius:6px;background:var(--warn-ink);color:var(--warn-bg)}
+.stop.closed .ph img{filter:grayscale(1);opacity:.55}
+.stop.closed h3{text-decoration:line-through;color:var(--muted)}
 .warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:8px 12px;font-size:13.5px}
 
 /* table */
@@ -205,67 +210,67 @@ const DAYS = [
   {id:"arrive", time:"12:20 → 约 18:30", cat:"交通", cn:"仁川机场 → KTX → 釜山站", kr:"부산역", ll:[35.11555,129.04259], img:"ktx", real:true,
    notes:["入境、拿行李后坐机场快线 AREX 到首尔站","从首尔站坐 KTX 去釜山，大约 2.5 小时","预计 18:30–19:00 到釜山站"],
    warn:"实际到达时间看入境速度和 KTX 班次，转车多留一点时间。", book:[["订 KTX","https://www.letskorail.com/"]]},
-  {id:"songjeong", time:"晚餐", cat:"老字号", cn:"松亭三代汤饭", kr:"송정3대국밥", ll:[35.15574,129.05855], img:"gukbap", real:true,
+  {id:"songjeong", hours:"24 小时，全年无休", time:"晚餐", cat:"老字号", cn:"松亭三代汤饭", kr:"송정3대국밥", ll:[35.15574,129.05855], img:"gukbap", real:true,
    rating:["4.8","Trip.com · 127 条评论"], notes:["1946 年开业，在西面市场的猪肉汤饭巷","必点：猪肉汤饭（돼지국밥）、水煮猪肉拼盘（수육）","坐了一天车，热汤最舒服"]},
-  {id:"ssangdungi", alt:true, time:"备选", cat:"餐厅", cn:"双胞胎猪肉汤饭", kr:"쌍둥이돼지국밥", ll:[35.13364,129.09214], img:"gukbap2", real:true,
+  {id:"ssangdungi", hours:"09:00–22:00", alt:true, time:"备选", cat:"餐厅", cn:"双胞胎猪肉汤饭", kr:"쌍둥이돼지국밥", ll:[35.13364,129.09214], img:"gukbap2", real:true,
    notes:["在南区大渊洞，也是很有名的汤饭店","和松亭三代是同一种料理，二选一就好，不用跑两家"]},
   {id:"seomyeon", time:"晚上", cat:"逛街", cn:"西面商圈", kr:"서면", ll:[35.15732,129.05948], img:"seomyeon", real:true,
    notes:["逛地下街、药妆店、便利店","想吃甜品的话，Day 4 的녹카페就在附近"]},
  ]},
  {n:2, date:"1/6（三）", title:"松岛缆车 · 影岛海景 · 南浦洞", sub:"从西边的松岛开始，绕到影岛看海，晚上回南浦洞吃市场。", stops:[
-  {id:"songdo", time:"上午", cat:"景点", cn:"松岛海上缆车", kr:"송도해상케이블카", ll:[35.06892,129.02202], img:"songdo", real:true,
+  {id:"songdo", hours:"09:00 开始；售票到关门前 30 分钟，结束时间看季节和天气", time:"上午", cat:"景点", cn:"松岛海上缆车", kr:"송도해상케이블카", ll:[35.06892,129.02202], img:"songdo", real:true,
    notes:["从海面上飞过去，有透明地板的车厢","预留 1–1.5 小时，看排队情况"], book:[["官网","https://www.busanaircruise.co.kr/"]]},
-  {id:"haenyeo", time:"午餐", cat:"海鲜", cn:"影岛海女村", kr:"영도 해녀촌", ll:[35.0700,129.0640], approx:true, img:"urchin", real:true,
+  {id:"haenyeo", hours:"网上查不到，出发前用 Naver 确认（看天气营业）", time:"午餐", cat:"海鲜", cn:"影岛海女村", kr:"영도 해녀촌", ll:[35.0700,129.0640], approx:true, img:"urchin", real:true,
    notes:["海女现捞的海鲜、海胆紫菜包饭","可以体验釜山的海女文化"], warn:"海鲜供应看季节和天气，出发前确认营业和菜单。"},
-  {id:"huinnyeoul", time:"下午", cat:"景点", cn:"白浅滩文化村", kr:"흰여울문화마을", ll:[35.07740,129.04565], img:"huinnyeoul", real:true,
+  {id:"huinnyeoul", hours:"村子全天开放（是住宅区，晚上请小声）", time:"下午", cat:"景点", cn:"白浅滩文化村", kr:"흰여울문화마을", ll:[35.07740,129.04565], img:"huinnyeoul", real:true,
    notes:["海边悬崖上的小巷，非常好拍","坡道和阶梯多，穿好走的鞋"]},
-  {id:"thrill", time:"下午", cat:"咖啡", cn:"Thrill on the Mug", kr:"스릴온더머그", ll:[35.0735,129.0550], approx:true, img:"hcafe", real:true,
-   rating:["4.5","Google"], notes:["两层楼的海景咖啡，梯田式座位","店里还有滑索可以玩","营业约 10:00–21:30"]},
-  {id:"samjin", time:"下午茶", cat:"老字号", cn:"三进鱼糕本店", kr:"삼진어묵 본점", ll:[35.0919,129.0416], approx:true, img:"eomuk", real:true,
+  {id:"thrill", hours:"已停业", closed:true, nopin:true, time:"已停业", cat:"咖啡", cn:"Thrill on the Mug", kr:"스릴온더머그", ll:[35.0735,129.0550], approx:true, img:"hcafe", real:true,
+   notes:["这家已经停业，不用去了","白浅滩附近还有很多海景咖啡，到时候可以随意找一家"]},
+  {id:"samjin", hours:"09:00–19:00", time:"下午茶", cat:"老字号", cn:"三进鱼糕本店", kr:"삼진어묵 본점", ll:[35.0919,129.0416], approx:true, img:"eomuk", real:true,
    notes:["1953 年开业的鱼糕老店","现吃，或者买伴手礼"]},
-  {id:"park", time:"傍晚", cat:"咖啡", cn:"P.ARK 피아크", kr:"피아크", ll:[35.08643,129.07673], img:"park", real:true,
+  {id:"park", hours:"最后点餐 20:00（开门时间出发前确认）", time:"傍晚", cat:"咖啡", cn:"P.ARK 피아크", kr:"피아크", ll:[35.08643,129.07673], img:"park", real:true,
    notes:["超大的港口景观咖啡馆，面包种类很多","天气好可以在这里看日落"]},
-  {id:"biff", time:"晚上第一站", cat:"甜品", cn:"BIFF 广场坚果糖饼", kr:"씨앗호떡", ll:[35.09804,129.02947], img:"hotteok", real:true,
+  {id:"biff", hours:"路边摊，没有固定时间，大约中午到晚上", time:"晚上第一站", cat:"甜品", cn:"BIFF 广场坚果糖饼", kr:"씨앗호떡", ll:[35.09804,129.02947], img:"hotteok", real:true,
    notes:["外层煎得酥脆，里面是糖浆和坚果","4 个人先买 2 份分享，等下还要吃晚餐"]},
-  {id:"jagalchi", time:"晚餐 A", cat:"海鲜", cn:"札嘎其市场生鱼片", kr:"자갈치시장", ll:[35.09574,129.02512], img:"jagalchi", real:true,
+  {id:"jagalchi", hours:"市场 05:00–22:00；生鱼片中心 09:00 开始", time:"晚餐 A", cat:"海鲜", cn:"札嘎其市场生鱼片", kr:"자갈치시장", ll:[35.09574,129.02512], img:"jagalchi", real:true,
    notes:["先问清楚生鱼片的种类和重量","问清楚 4 人份到底包含什么、有没有另外收费","挑干净、有冷藏的店家"]},
-  {id:"seongil", alt:true, time:"晚餐 B", cat:"餐厅", cn:"成日家烤盲鳗", kr:"성일집", ll:[35.0958,129.0368], approx:true, img:"hagfish", real:true,
+  {id:"seongil", hours:"11:00–23:00", alt:true, time:"晚餐 B", cat:"餐厅", cn:"成日家烤盲鳗", kr:"성일집", ll:[35.0958,129.0368], approx:true, img:"hagfish", real:true,
    notes:["盐烤（소금구이）或辣酱烤（양념구이）","网上资料：11:00–23:00，辣酱烤约 18,000 韩元"]},
  ]},
  {n:3, date:"1/7（四）", title:"机张 · 青沙浦 · 天空胶囊 · 海云台", sub:"最精华的一天。先去北边的机张，再一路往南回到海云台。", stops:[
-  {id:"geumsu", time:"早餐", cat:"老字号", cn:"锦水河豚汤 海云台本店", kr:"금수복국 해운대본점", ll:[35.16242,129.16448], img:"bokguk", real:true,
+  {id:"geumsu", hours:"24 小时", time:"早餐", cat:"老字号", cn:"锦水河豚汤 海云台本店", kr:"금수복국 해운대본점", ll:[35.16242,129.16448], img:"bokguk", real:true,
    rating:["4.6","Trip.com · 61 条评论"], notes:["1970 年开业，第一家用砂锅煮河豚汤的店","河豚清汤（맑은탕）或辣汤（매운탕）"]},
-  {id:"yonggungsa", time:"上午", cat:"景点", cn:"海东龙宫寺", kr:"해동용궁사", ll:[35.18843,129.22298], img:"yonggungsa", real:true,
+  {id:"yonggungsa", hours:"04:30–20:30，免费入场", time:"上午", cat:"景点", cn:"海东龙宫寺", kr:"해동용궁사", ll:[35.18843,129.22298], img:"yonggungsa", real:true,
    notes:["建在海边岩石上的寺庙","早上去人比较少"]},
-  {id:"waveon", time:"上午", cat:"咖啡", cn:"Waveon Coffee", kr:"웨이브온 커피", ll:[35.32226,129.26979], img:"waveon", real:true,
+  {id:"waveon", hours:"10:00–24:00（最后点餐 23:00）", time:"上午", cat:"咖啡", cn:"Waveon Coffee", kr:"웨이브온 커피", ll:[35.32226,129.26979], img:"waveon", real:true,
    rating:["4.7","Trip.com"], notes:["得过韩国建筑奖的清水混凝土建筑，整面落地窗看海","营业 10:00–24:00"], warn:"Waveon 在龙宫寺北边约 15 公里，坐出租车大约 25 分钟。"},
-  {id:"broni", time:"下午", cat:"咖啡", cn:"青沙浦 Café Broni", kr:"브로니 청사포", ll:[35.1601,129.1935], approx:true, img:"cheongsapo", real:true,
+  {id:"broni", hours:"约 11:00–21:00（网上资料，出发前确认）", time:"下午", cat:"咖啡", cn:"青沙浦 Café Broni", kr:"브로니 청사포", ll:[35.1601,129.1935], approx:true, img:"cheongsapo", real:true,
    notes:["三层楼的海景咖啡，顶楼有懒人沙发","喝完直接走去坐天空胶囊"]},
-  {id:"capsule", time:"下午", cat:"景点", cn:"天空胶囊列车（青沙浦 → 尾浦）", kr:"해운대 블루라인파크 스카이캡슐", ll:[35.16124,129.19138], img:"capsule", real:true,
+  {id:"capsule", hours:"冬季（11–2 月）08:30–18:00", time:"下午", cat:"景点", cn:"天空胶囊列车（青沙浦 → 尾浦）", kr:"해운대 블루라인파크 스카이캡슐", ll:[35.16124,129.19138], img:"capsule", real:true,
    rating:["4.8","5,529 条评论"], notes:["彩色小车厢沿海边慢慢开，约 30 分钟","每个车厢最多 4 人"], warn:"冬季末班大约 18:00，一定要先订票。", book:[["官网订票","https://www.bluelinepark.com/eng/"]]},
-  {id:"market", time:"傍晚", cat:"甜品", cn:"海云台传统市场 · 蜂蜜冰淇淋", kr:"해운대 전통시장", ll:[35.16233,129.16321], img:"market", real:true,
+  {id:"market", hours:"09:00–22:00（各摊位不同）", time:"傍晚", cat:"甜品", cn:"海云台传统市场 · 蜂蜜冰淇淋", kr:"해운대 전통시장", ll:[35.16233,129.16321], img:"market", real:true,
    notes:["找蜂蜜冰淇淋，顺便逛市场的街头小吃","先买一份分享，留肚子吃晚餐"]},
-  {id:"haemakki", time:"晚餐", cat:"餐厅", cn:"Haemakki 酱蟹", kr:"해마끼 간장게장", ll:[35.1601,129.1592], approx:true, img:"gejang", real:false,
+  {id:"haemakki", hours:"10:00–21:30，15:00–17:00 休息，周三公休", time:"晚餐", cat:"餐厅", cn:"Haemakki 酱蟹", kr:"해마끼 간장게장", ll:[35.1601,129.1592], approx:true, img:"gejang", real:false,
    notes:["从海云台站 3 号出口往海边走，在 Pale de CZ 大楼 2 楼","酱油蟹（간장게장）、蟹膏拌饭","网上资料：10:00–21:30，15:00–17:00 休息，周三公休（1/7 是周四，没问题）"], warn:"酱蟹是生腌海鲜，留意卫生。先订好游艇时间，再决定几点吃。"},
-  {id:"kkotgedang", alt:true, time:"酱蟹备选", cat:"餐厅", cn:"신사 꽃게당 海云台直营店", kr:"신사 꽃게당 해운대직영점", ll:[35.1604,129.1598], approx:true, img:"gejang2", real:false,
+  {id:"kkotgedang", hours:"网上查不到，出发前用 Naver 确认", alt:true, time:"酱蟹备选", cat:"餐厅", cn:"신사 꽃게당 海云台直营店", kr:"신사 꽃게당 해운대직영점", ll:[35.1604,129.1598], approx:true, img:"gejang2", real:false,
    notes:["首尔新沙洞本店开的直营分店，墙上满满明星签名","两人套餐：酱蟹 + 花蟹火锅 + 拉面","4 个人比较菜单、价格、最新评价后再决定"]},
-  {id:"yacht", time:"晚上 · 烟花场", cat:"体验", cn:"Yholic 游艇夜游（烟花场次）", kr:"와이홀릭 요트 수영만요트경기장", ll:[35.1586,129.1380], approx:true, img:"yacht", real:true,
+  {id:"yacht", hours:"周四夜间场 17:00–22:00，每个整点一班", time:"晚上 · 烟花场", cat:"体验", cn:"Yholic 游艇夜游（烟花场次）", kr:"와이홀릭 요트 수영만요트경기장", ll:[35.1586,129.1380], approx:true, img:"yacht", real:true,
    notes:["集合：수영만요트경기장 Suyeongman Bay Yachting Center（해운대해변로 84），提早 20 分钟到","约 50 分钟：Marine City → 冬柏岛 → 广安大桥 → 广安里","法国双体游艇，每船最多 25 人，含零食、饮料、即拍照片","1/7 是周四：夜间场 17:00–22:00 每个整点一班"], warn:"订的时候一定要选「含烟花 Fireworks」的场次（烟花只在部分夜间场有）。建议订 20:00 场，酱蟹 18:00 前开吃刚好。前一天中午 12 点前要订好；3 天前取消全额退款，2 天前退一半。", book:[["Yholic 订票（Trazy）","https://www.trazy.com/experience/detail/busan-yacht-tour-private-public-y-holic"]]},
  ]},
  {n:4, date:"1/8（五）", title:"汗蒸 · 田浦咖啡街 · 回首尔", sub:"最后一天放松为主，不排远的地方。18:00 前回到釜山站。", stops:[
-  {id:"spaland", time:"上午 · A", cat:"汗蒸", cn:"Spaland 新世界 Centum City", kr:"신세계 센텀시티 스파랜드", ll:[35.16763,129.12971], img:"spaland", real:true,
+  {id:"spaland", hours:"06:00–23:00（22:00 最后入场）", time:"上午 · A", cat:"汗蒸", cn:"Spaland 新世界 Centum City", kr:"신세계 센텀시티 스파랜드", ll:[35.16763,129.12971], img:"spaland", real:true,
    notes:["13 种主题汗蒸房、温泉池，第一次体验很适合","06:00–23:00，成人平日约 17,000 韩元，4 小时","不用预约。我的首选是这家"], warn:"预留 3–4 小时。", book:[["票（Trazy）","https://www.trazy.com/experience/detail/Busan-Centum-City-Spaland-Ticket"]]},
-  {id:"clubd", alt:true, time:"上午 · B", cat:"汗蒸", cn:"CLUB D OASIS（海云台 LCT）", kr:"클럽디오아시스", ll:[35.16067,129.16869], img:"lct", real:true,
+  {id:"clubd", hours:"网上查不到冬季时间，买票前看官网", alt:true, time:"上午 · B", cat:"汗蒸", cn:"CLUB D OASIS（海云台 LCT）", kr:"클럽디오아시스", ll:[35.16067,129.16869], img:"lct", real:true,
    notes:["海景度假式水疗，适合拍照","可以和朋友投票：A 是汗蒸房体验，B 是海景度假感"], warn:"1 月户外设施可能不开放，买票前上官网确认。", book:[["官网","https://www.clubdoasis.com/"]]},
-  {id:"amso", time:"午餐", cat:"老字号", cn:"海云台母牛排骨", kr:"해운대암소갈비집", ll:[35.1627,129.1648], approx:true, img:"galbi", real:false,
+  {id:"amso", hours:"11:30–22:00；午餐最后点餐 14:00，15:00–17:00 休息，全年无休", time:"午餐", cat:"老字号", cn:"海云台母牛排骨", kr:"해운대암소갈비집", ll:[35.1627,129.1648], approx:true, img:"galbi", real:false,
    notes:["1964 年开业，上过 Netflix 美食节目","先吃生排骨，再吃调味排骨，最后一定要点土豆面（감자국수）","排队多，价格偏高"], warn:"要不要保留，看你们选哪个汗蒸幕和当天时间。"},
-  {id:"chunha", alt:true, time:"午餐备选", cat:"餐厅", cn:"春夏秋冬冷小麦面 西面本店", kr:"춘하추동밀면 서면본점", ll:[35.1579,129.0569], approx:true, img:"milmyeon", real:true,
+  {id:"chunha", hours:"网上查不到西面本店的时间，出发前用 Naver 确认", alt:true, time:"午餐备选", cat:"餐厅", cn:"春夏秋冬冷小麦面 西面本店", kr:"춘하추동밀면 서면본점", ll:[35.1579,129.0569], approx:true, img:"milmyeon", real:true,
    notes:["釜山代表面食：冷汤小麦面（물밀면）、辣拌小麦面（비빔밀면）","吃了排骨就不用硬塞这家"]},
-  {id:"jeonpo", time:"下午", cat:"咖啡", cn:"田浦咖啡街", kr:"전포카페거리", ll:[35.1556,129.0647], approx:true, img:"jeonpo", real:true,
+  {id:"jeonpo", hours:"各店不同，多数中午开门", time:"下午", cat:"咖啡", cn:"田浦咖啡街", kr:"전포카페거리", ll:[35.1556,129.0647], approx:true, img:"jeonpo", real:true,
    notes:["整条街的特色咖啡馆、小店","买伴手礼"]},
-  {id:"nok", time:"下午", cat:"甜品", cn:"녹아들다 녹카페 · 抹茶芒果冰", kr:"녹아들다 녹카페", ll:[35.15912,129.06382], img:"bingsu", real:true,
+  {id:"nok", hours:"网上查不到，出发前用 Naver 确认", time:"下午", cat:"甜品", cn:"녹아들다 녹카페 · 抹茶芒果冰", kr:"녹아들다 녹카페", ll:[35.15912,129.06382], img:"bingsu", real:true,
    notes:["地址：부산 부산진구 서전로37번길 18 1층","招牌：抹茶芒果冰（말차 망고빙수），4 个人先点一份分享"], warn:"排太久的话，先顾好回程时间。"},
-  {id:"sinbalwon", time:"傍晚", cat:"老字号", cn:"新发园", kr:"신발원", ll:[35.1153,129.0393], approx:true, img:"mandu", real:true,
+  {id:"sinbalwon", hours:"网上查不到，出发前用 Naver 确认；排队多，早点去", time:"傍晚", cat:"老字号", cn:"新发园", kr:"신발원", ll:[35.1153,129.0393], approx:true, img:"mandu", real:true,
    rating:["4.5","Trip.com · 515 条评论"], notes:["釜山站对面、唐人街入口的煎饺名店","排队多的话直接外带，上车吃"]},
   {id:"ktxback", time:"18:00", cat:"交通", cn:"KTX 回首尔", kr:"부산역", ll:[35.11555,129.04259], img:"ktx", real:true, nopin:true,
    notes:["提早 30 分钟到釜山站","拿行李、确认车票和月台"], book:[["订 KTX","https://www.letskorail.com/"]]},
@@ -314,15 +319,16 @@ DAYS.forEach(d => {
     if (!s.alt && !s.nopin) s.num = ++k;
     if (s.alt) s.num = null;
     s.day = d.n;
-    html += `<article class="stop ${s.alt ? "alt" : ""}" id="stop-${s.id}">
+    html += `<article class="stop ${s.alt ? "alt" : ""} ${s.closed ? "closed" : ""}" id="stop-${s.id}">
       <div class="ph"><img src="img/${s.img}.jpg" alt="${esc(s.cn)}" loading="lazy">
         ${s.num ? `<span class="num">${s.num}</span>` : ""}
-        <span class="ptag">${s.real ? "实景" : "示意"}</span></div>
+        <span class="ptag">${s.closed ? "已停业" : s.real ? "实景" : "示意"}</span></div>
       <div class="body">
-        <div class="meta"><span class="time">${esc(s.time)}</span><span class="cat">${esc(s.cat)}</span>${s.alt ? '<span class="altlabel">备选</span>' : ""}</div>
+        <div class="meta"><span class="time">${esc(s.time)}</span><span class="cat">${esc(s.cat)}</span>${s.alt ? '<span class="altlabel">备选</span>' : ""}${s.closed ? '<span class="closedlabel">已停业</span>' : ""}</div>
         <h3>${esc(s.cn)}</h3>
         <div class="krrow"><span class="krname kr">${esc(s.kr)}</span><button class="copy" data-kr="${esc(s.kr)}">复制韩文</button></div>
         ${s.rating ? `<div class="rating">⭐ ${s.rating[0]} <span>· ${esc(s.rating[1])}</span></div>` : ""}
+        ${s.hours && !s.closed ? `<div class="hours ${/查不到/.test(s.hours) ? "unk" : ""}">🕒 营业时间：${esc(s.hours)}</div>` : ""}
         <ul>${s.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>
         ${s.warn ? `<div class="warn">⚠️ ${esc(s.warn)}</div>` : ""}
         <div class="links">
