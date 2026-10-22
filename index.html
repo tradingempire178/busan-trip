@@ -35,7 +35,6 @@ h1,h2,h3{margin:0;text-wrap:balance}
 
 /* hero */
 .hero{padding-block:28px 18px;display:grid;gap:10px}
-.hero .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(34px,10vw,76px);line-height:1;white-space:nowrap;color:var(--ink);letter-spacing:.01em}
 .hero h1 span{color:var(--accent)}
 .hero .sub{font-size:17px;font-weight:700}
@@ -45,7 +44,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 /* nav */
 nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
 nav.days::-webkit-scrollbar{display:none}
-nav.days a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+nav.days a{flex:none;display:inline-flex;align-items:center;min-height:36px;text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
 nav.days a .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 
 section{scroll-margin-top:60px}
@@ -55,20 +54,28 @@ section{scroll-margin-top:60px}
 
 /* booking */
 .book{display:grid;gap:10px}
+.more{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.more summary{cursor:pointer;padding:12px 14px;font-weight:700;font-size:14px;min-height:44px;display:flex;align-items:center;gap:8px;list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"＋";color:var(--accent);font-weight:800}
+.more[open] summary::before{content:"－"}
+.more .book{padding:0 10px 10px}
+.more .book-item{border-color:var(--line);background:var(--bg)}
 .book-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
 .book-item .n{grid-row:span 3;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800;font-size:14px}
 .book-item.ok .n{background:var(--line);color:var(--muted)}
 .book-item h3{font-size:15px;font-weight:800}
 .book-item p{margin:0;font-size:13.5px;color:var(--muted)}
 .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.btn{display:inline-flex;align-items:center;gap:4px;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;border:1px solid var(--line);color:var(--ink);background:var(--bg);cursor:pointer;font-family:inherit;line-height:1.3}
+.btn{display:inline-flex;align-items:center;gap:4px;min-height:38px;text-decoration:none;font-size:13px;font-weight:700;padding:8px 13px;border-radius:999px;border:1px solid var(--line);color:var(--ink);background:var(--bg);cursor:pointer;font-family:inherit;line-height:1.3}
+.btn.navbtn{border-color:var(--ink)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .btn:focus-visible,nav.days a:focus-visible,.chip:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 
 /* map */
-#map{height:min(62vh,520px);border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);z-index:1}
+#map{height:min(56vh,520px);border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);z-index:1}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.chip{font:inherit;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip{font:inherit;font-size:13px;font-weight:700;min-height:36px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
 .chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
 .map-note{font-size:12.5px;color:var(--muted);margin-top:8px}
 .pin{width:28px;height:28px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);display:grid;place-items:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
@@ -84,7 +91,7 @@ section{scroll-margin-top:60px}
 /* day */
 .day-head{margin-block:40px 14px;display:grid;gap:4px;padding-top:14px;border-top:1px solid var(--line)}
 .day-head .d{font-family:var(--font-display);font-size:30px;line-height:1;color:var(--dc)}
-.day-head h2{font-size:20px;font-weight:800}
+.day-head h2{font-size:20px;font-weight:800;word-break:keep-all}
 .day-head p{margin:0;color:var(--muted);font-size:14px}
 .stops{display:grid;gap:14px}
 .stop{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;scroll-margin-top:64px}
@@ -98,13 +105,13 @@ section{scroll-margin-top:60px}
 .ph .num{position:absolute;left:10px;top:10px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--dc);color:#fff;font-weight:800;font-size:14px;border:2px solid #fff}
 .body{padding:14px 16px 16px;display:grid;gap:8px;min-width:0}
 .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;font-weight:700;color:var(--muted)}
-.meta .time{color:var(--dc);font-variant-numeric:tabular-nums}
+.meta .time{color:var(--dc);font-variant-numeric:tabular-nums;font-size:15px;font-weight:800}
 .cat{padding:2px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
 .altlabel{padding:2px 8px;border-radius:6px;background:var(--ink);color:var(--bg)}
 .stop h3{font-size:18px;font-weight:800;line-height:1.3}
 .krrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .krname{font-size:15px;font-weight:600;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:2px 8px;user-select:all}
-.copy{font:inherit;font-size:12px;font-weight:700;border:none;background:none;color:var(--sea);cursor:pointer;padding:2px 4px}
+.copy{font:inherit;font-size:13px;font-weight:700;border:none;background:none;color:var(--sea);cursor:pointer;padding:8px 6px;min-height:36px}
 .stop ul{margin:0;padding-left:18px;display:grid;gap:2px}
 .stop li::marker{color:var(--dc)}
 .rating{font-size:13px;font-weight:700}
@@ -144,10 +151,10 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 
 <div class="wrap">
   <header class="hero">
-    <div class="eyebrow">2027 · 1 月 5 日 — 1 月 8 日</div>
     <h1>BUSAN <span>4D3N</span></h1>
     <div class="sub">釜山 4 天 3 夜 · 海景打卡 × 老字号美食 × 海景咖啡 × 两场日落</div>
     <div class="facts">
+      <span class="fact">📅 2027 · 1/5（二）– 1/8（五）</span>
       <span class="fact">👥 4 人</span>
       <span class="fact">🚄 仁川 → KTX → 釜山</span>
       <span class="fact">🌡️ 1 月约 0–8°C，海边风大</span>
@@ -168,7 +175,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
   </nav>
 
   <section id="book">
-    <div class="sec-title"><h2>出发前要订的</h2><span class="tag">红色 = 要提前订</span></div>
+    <div class="sec-title"><h2>出发前要订的</h2><span class="tag">这 4 项要提前订</span></div>
     <div class="book" id="booklist"></div>
   </section>
 
@@ -308,13 +315,16 @@ const gmap = kr => "https://www.google.com/maps/search/?api=1&query=" + encodeUR
 const photos = kr => "https://search.naver.com/search.naver?where=image&query=" + encodeURIComponent(kr);
 const L_ = (h, t, cls) => `<a class="btn ${cls||""}" href="${h}" target="_blank" rel="noopener">${t}</a>`;
 
-document.getElementById("booklist").innerHTML = BOOK.map((b, i) => `
+const bookItem = (b, i) => `
   <div class="book-item ${b.must ? "" : "ok"}">
     <div class="n">${i + 1}</div>
     <h3>${esc(b.t)}</h3>
     <p>${esc(b.p)}</p>
     <div class="links">${b.links.map(([t, h], j) => L_(h, t + " ↗", b.must && j === 0 ? "primary" : "")).join("")}</div>
-  </div>`).join("");
+  </div>`;
+const mustBook = BOOK.filter(b => b.must), restBook = BOOK.filter(b => !b.must);
+document.getElementById("booklist").innerHTML = mustBook.map((b, i) => bookItem(b, i)).join("") +
+  `<details class="more"><summary>其他 ${restBook.length} 项：不用提前订，到时候现场处理</summary><div class="book">${restBook.map((b, i) => bookItem(b, mustBook.length + i)).join("")}</div></details>`;
 
 const dayColor = n => `var(--d${n})`;
 let html = "";
@@ -340,9 +350,9 @@ DAYS.forEach(d => {
         ${s.warn ? `<div class="warn">⚠️ ${esc(s.warn)}</div>` : ""}
         <div class="links">
           ${(s.book || []).map(([t, h]) => L_(h, "🎟️ " + t + " ↗", "primary")).join("")}
-          ${L_(naver(s.kr), "Naver 地图 ↗")}
-          ${L_(gmap(s.kr), "Google 地图 ↗")}
+          ${L_(naver(s.kr), "Naver 地图 ↗", "navbtn")}
           ${s.xhs ? L_(s.xhs, "📕 小红书 ↗") : L_(photos(s.kr), "看真实照片 ↗")}
+          ${L_(gmap(s.kr), "Google 地图 ↗")}
         </div>
       </div></article>`;
   });
