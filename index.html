@@ -124,6 +124,14 @@ th{font-size:12px;letter-spacing:.06em;color:var(--muted)}
 tr:last-child td{border-bottom:none}
 td a{font-weight:700;text-decoration:none}
 
+.route{margin-bottom:18px;display:grid;gap:8px}
+.route h3{font-size:15px;font-weight:800}
+table.rt{min-width:520px;font-size:13px}
+table.rt td{padding:7px 10px;white-space:nowrap}
+table.rt td:nth-child(2){white-space:normal;min-width:150px}
+table.rt td.t{font-variant-numeric:tabular-nums;font-weight:700;color:var(--dc)}
+table.rt tbody tr:nth-child(even){background:var(--bg)}
+.rnote{margin:0;font-size:12.5px;color:var(--muted)}
 .credits{font-size:12px;color:var(--muted);display:grid;gap:2px}
 .credits a{color:var(--muted)}
 footer{margin-top:28px;font-size:12px;color:var(--muted)}
@@ -223,7 +231,25 @@ const DAYS = [
   {id:"airbnb", time:"约 20:30 入住", cat:"住宿", cn:"我们的 Airbnb（松亭）", kr:"부산 해운대구 송정광어골로 29, 4층", ll:[35.17835,129.19697], nopin:true, img:"airbnb", real:true,
    notes:["英文地址：29 Songjeonggwangeogol-ro 4F, Haeundae-gu, Busan 48073","在松亭海滩附近，地图上的 🏠 就是这里","从西面坐出租车约 40 分钟","坐出租车时，按「复制韩文」把韩文地址给司机看"]},
  ]},
- {n:2, date:"1/6（三）", title:"海云台 · 青沙浦咖啡 · 日落天空胶囊 · 游艇 · 广安里", sub:"整天从东往西走：上午海云台，下午青沙浦两家咖啡，坐天空胶囊看日落，晚上游艇和广安里夜景。", stops:[
+ {n:2, date:"1/6（三）", title:"海云台 · 青沙浦咖啡 · 日落天空胶囊 · 游艇 · 广安里", sub:"整天从东往西走：上午海云台，下午青沙浦两家咖啡，坐天空胶囊看日落，晚上游艇和广安里夜景。",
+  route:[
+   ["09:00","🏠 Airbnb 出发","🚕 出租车","4.6 km","约 12 分钟"],
+   ["09:30","🍲 锦水河豚汤","—","—","—"],
+   ["10:30","🏖️ 海云台海边散步","🚶 走路","就在旁边","—"],
+   ["12:00","🎁 Busan Bada Sand","🚶 走路","0.9 km","约 12 分钟"],
+   ["12:15","🍢 海云台市场买小吃当午餐","🚶 走路","很近","约 5 分钟"],
+   ["13:00","🏠 回 Airbnb 放伴手礼、休息","🚕 出租车","5.2 km","约 15 分钟"],
+   ["14:00","☕ <b>Broni</b>","🚕 出租车","2.8 km","约 8 分钟"],
+   ["15:30","☕ <b>Liberta</b>","🚶 走路","100 m","2 分钟"],
+   ["16:45","🚃 走到青沙浦站","🚶 走路","400 m","5 分钟"],
+   ["16:50","🌅 <b>天空胶囊 · 日落场</b> → 尾浦","🚃 胶囊","海边","约 30 分钟"],
+   ["17:30","🍦 海云台市场 · 蜂蜜冰淇淋","🚶 走路","1.3 km","约 15 分钟"],
+   ["18:00","🍖 海云台母牛排骨","🚶 走路","200 m","3 分钟"],
+   ["19:30","🛥️ 去游艇码头","🚕 出租车","3.3 km","约 10 分钟"],
+   ["20:00","🛥️ Yholic 游艇 · 烟花场","—","—","约 50 分钟"],
+   ["21:00","🌃 <b>广安里海边散步</b>","🚕 出租车","2.5 km","约 8 分钟"],
+   ["22:00","🏠 回 Airbnb","🚕 出租车","10.3 km","约 20–25 分钟"],
+  ], stops:[
   {id:"geumsu", hours:"24 小时", time:"09:30 早餐", cat:"老字号", cn:"锦水河豚汤 海云台本店", kr:"금수복국 해운대본점", ll:[35.16242,129.16448], img:"bokguk", real:true,
    rating:["4.6","Trip.com · 61 条评论"], notes:["从 Airbnb 坐出租车约 12 分钟（4.6 km）","1970 年开业，第一家用砂锅煮河豚汤的店","吃完去海云台海边散步"]},
   {id:"badasand", hours:"约 12:00–19:00（2023 年资料），每天限量，很快卖完", time:"12:00", cat:"伴手礼", cn:"Busan Bada Sand 伴手礼", kr:"부산바다샌드", ll:[35.16489,129.15803], img:"badasand", real:true, notes:["地址：부산 해운대구 우동1로38번가길 11（海云台站附近）","开门就去买，卖完的机会最小","买完在旁边的海云台市场买小吃当午餐，再坐车回 Airbnb 放伴手礼（约 15 分钟）"], warn:"去之前看 Instagram @busan.bada.sand 有没有休息或售罄公告。", book:[["Instagram","https://www.instagram.com/busan.bada.sand/"]]},
@@ -317,7 +343,7 @@ let html = "";
 DAYS.forEach(d => {
   let k = 0;
   html += `<section id="day${d.n}" style="--dc:${dayColor(d.n)}">
-    <div class="day-head"><div class="d">DAY ${d.n}</div><h2>${esc(d.date)} ${esc(d.title)}</h2><p>${esc(d.sub)}</p></div><div class="stops">`;
+    <div class="day-head"><div class="d">DAY ${d.n}</div><h2>${esc(d.date)} ${esc(d.title)}</h2><p>${esc(d.sub)}</p></div>${d.route ? `<div class="route"><h3>🗺️ 今天的路线、距离和车程</h3><div class="tbl"><table class="rt"><thead><tr><th>时间</th><th>安排</th><th>怎么去</th><th>距离</th><th>车程</th></tr></thead><tbody>${d.route.map(r => `<tr><td class="t">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join("")}</tbody></table></div><p class="rnote">距离和车程是一般路况的估计；19:00 前后海云台比较塞。出租车大约：3 km 内 5,000–6,000 韩元、5 km 约 7,000–8,000 韩元、10 km 约 12,000–14,000 韩元。</p></div>` : ""}<div class="stops">`;
   d.stops.forEach(s => {
     if (!s.alt && !s.nopin) s.num = ++k;
     if (s.alt) s.num = null;
