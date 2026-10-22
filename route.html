@@ -71,8 +71,10 @@ nav.days a:first-child{background:var(--ink);color:var(--bg);border-color:var(--
 .stop.key .name{font-weight:800}
 .stop .how{font-size:13px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
 
-/* route follows the scroll: the line grows to the reading line (55% down the screen) and each dot lights as the line reaches it. Only runs when JS adds .anim */
+/* route draws itself: one continuous line grows down, each dot lights as the line reaches it. Only runs when JS adds .anim */
 [hidden]{display:none!important}
+.replay{margin-left:auto;align-self:center;font:inherit;font-size:12.5px;font-weight:700;color:var(--dc);background:var(--surface);border:1px solid var(--line);border-radius:999px;min-height:34px;padding:4px 12px;cursor:pointer}
+.replay:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .tl{position:relative}
 .prog{position:absolute;width:3px;margin-left:-1.5px;border-radius:2px;background:var(--dc);transform-origin:50% 0;transform:scaleY(0);will-change:transform;pointer-events:none;z-index:1}
 .tl.anim .rail::before{background:var(--line);opacity:1}
@@ -105,7 +107,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day1" class="day" style="--dc:var(--d1)">
     <header class="dhead">
       <div class="dn">DAY 1</div>
-      <div class="dt"><h2 class="date">1/5（二）</h2></div>
+      <div class="dt"><h2 class="date">1/5（二）</h2></div><button class="replay" type="button" data-day="1">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>12:20</time><span class="rail"><i></i></span><div class="what"><span class="name">✈️ 落地仁川机场，入境、拿行李</span><span class="how">约 1 小时</span></div></li>
@@ -121,7 +123,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day2" class="day" style="--dc:var(--d2)">
     <header class="dhead">
       <div class="dn">DAY 2</div>
-      <div class="dt"><h2 class="date">1/6（三）</h2></div>
+      <div class="dt"><h2 class="date">1/6（三）</h2></div><button class="replay" type="button" data-day="2">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>09:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span><span class="how">🚕 出租车 · 4.6 km · 约 12 分钟</span></div></li>
@@ -147,7 +149,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day3" class="day" style="--dc:var(--d3)">
     <header class="dhead">
       <div class="dn">DAY 3</div>
-      <div class="dt"><h2 class="date">1/7（四）</h2></div>
+      <div class="dt"><h2 class="date">1/7（四）</h2></div><button class="replay" type="button" data-day="3">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>10:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span><span class="how">🚕 出租车 · 17.5 km · 约 40 分钟</span></div></li>
@@ -169,7 +171,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day4" class="day" style="--dc:var(--d4)">
     <header class="dhead">
       <div class="dn">DAY 4</div>
-      <div class="dt"><h2 class="date">1/8（五）</h2></div>
+      <div class="dt"><h2 class="date">1/8（五）</h2></div><button class="replay" type="button" data-day="4">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>11:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🧳 退房</span></div></li>
@@ -185,35 +187,43 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
 </div>
 <script>
 (() => {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const lists = [...document.querySelectorAll(".tl")].map(tl => {
-    tl.insertAdjacentHTML("afterbegin", '<span class="prog" aria-hidden="true"></span>');
-    tl.classList.add("anim");
-    return { tl, p: tl.querySelector(".prog"), items: [...tl.querySelectorAll("li")], top: 0, h: 1, fr: [] };
-  });
-  const measure = () => lists.forEach(L => {
-    const box = L.tl.getBoundingClientRect();
-    const dots = [...L.tl.querySelectorAll(".rail i")].map(i => { const r = i.getBoundingClientRect(); return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top }; });
-    L.top = dots[0].y; L.h = Math.max(1, dots[dots.length - 1].y - L.top);
-    L.fr = dots.map(d => (d.y - L.top) / L.h);
-    Object.assign(L.p.style, { left: dots[0].x + "px", top: L.top + "px", height: L.h + "px" });
-  });
-  const update = () => {
-    const line = innerHeight * 0.55;
-    const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
-    lists.forEach(L => {
-      const y0 = L.tl.getBoundingClientRect().top + L.top;
-      const k = atEnd ? 1 : Math.min(1, Math.max(0, (line - y0) / L.h));
-      L.p.style.transform = `scaleY(${k})`;
-      L.items.forEach((li, i) => li.classList.toggle("lit", L.fr[i] <= k + 0.001 && line >= y0));
-    });
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const replays = [...document.querySelectorAll(".replay")];
+  if (still || !("IntersectionObserver" in window)) { replays.forEach(b => b.hidden = true); return; }
+  const lists = [...document.querySelectorAll(".tl")];
+  const state = new Map();
+  const measure = tl => {
+    const box = tl.getBoundingClientRect();
+    const dots = [...tl.querySelectorAll(".rail i")].map(i => { const r = i.getBoundingClientRect(); return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top }; });
+    const p = tl.querySelector(".prog"), top = dots[0].y, h = dots[dots.length - 1].y - top;
+    Object.assign(p.style, { left: dots[0].x + "px", top: top + "px", height: h + "px" });
+    return dots.map(d => h ? (d.y - top) / h : 0);
   };
-  let queued = false;
-  const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; update(); }); } };
-  measure(); update();
-  addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", () => { measure(); update(); });
-  document.fonts && document.fonts.ready.then(() => { measure(); update(); });
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const play = tl => {
+    const st = state.get(tl); cancelAnimationFrame(st.raf);
+    const items = [...tl.querySelectorAll("li")], p = tl.querySelector(".prog");
+    const fr = measure(tl), dur = Math.max(3200, Math.min(5600, items.length * 400));
+    items.forEach(li => li.classList.remove("lit"));
+    p.style.transform = "scaleY(0)";
+    let t0 = null, next = 0;
+    const frame = now => {
+      if (t0 === null) t0 = now;
+      const k = ease(Math.min(1, (now - t0) / dur));
+      p.style.transform = `scaleY(${k})`;
+      while (next < items.length && fr[next] <= k + 0.001) items[next++].classList.add("lit");
+      if (k < 1) st.raf = requestAnimationFrame(frame); else st.done = true;
+    };
+    st.done = false; st.raf = requestAnimationFrame(frame);
+  };
+  lists.forEach(tl => {
+    tl.insertAdjacentHTML("afterbegin", '<span class="prog" aria-hidden="true"></span>');
+    tl.classList.add("anim"); state.set(tl, { raf: 0, done: false });
+  });
+  addEventListener("resize", () => lists.forEach(tl => { if (state.get(tl).done) measure(tl); }));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io.unobserve(e.target); play(e.target); } }), { threshold: 0.2 });
+  lists.forEach(tl => io.observe(tl));
+  replays.forEach(b => b.addEventListener("click", () => { const tl = b.closest(".day").querySelector(".tl"); io.unobserve(tl); play(tl); }));
 })();
 </script>
 </body>
