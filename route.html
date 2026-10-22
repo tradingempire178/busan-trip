@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Busan 4D3N 路线表</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Noto+Sans+SC:wght@400..800&display=swap">
+<style>
+:root{
+  --bg:#eef3f4; --surface:#ffffff; --ink:#122636; --muted:#56697a; --line:#d5dfe3;
+  --accent:#e2513a; --accent-ink:#ffffff; --sea:#0f6f86; --warn-bg:#fff4e0; --warn-ink:#7a4a00;
+  --d1:#d4561c; --d2:#0f7c96; --d3:#c42a6c; --d4:#4f7f12;
+  --font-display:"Bagel Fat One","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-body:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1820; --surface:#14242f; --ink:#e4edf1; --muted:#9db0bd; --line:#24394a;
+  --accent:#ff6e55; --accent-ink:#1a0d09; --sea:#4fc0d8; --warn-bg:#33270f; --warn-ink:#ffd58a;
+  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1820; --surface:#14242f; --ink:#e4edf1; --muted:#9db0bd; --line:#24394a;
+  --accent:#ff6e55; --accent-ink:#1a0d09; --sea:#4fc0d8; --warn-bg:#33270f; --warn-ink:#ffd58a;
+  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:60px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+h1,h2{margin:0;text-wrap:balance}
+.hero{padding-block:28px 14px;display:grid;gap:8px}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(36px,10vw,60px);line-height:1}
+.hero h1 span{color:var(--accent)}
+.hero p{margin:0;color:var(--muted);font-size:14px}
+nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.days a,.btn{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+nav.days a .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.btn{display:inline-block;justify-self:start}
+a:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+section{display:grid;gap:10px}
+.day-head{margin-top:32px;display:grid;gap:4px;padding-top:14px;border-top:1px solid var(--line)}
+.day-head .d{font-family:var(--font-display);font-size:28px;line-height:1;color:var(--dc)}
+.day-head h2{font-size:19px;font-weight:800}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;white-space:nowrap}
+td:nth-child(2){white-space:normal;min-width:160px}
+th{font-size:12px;letter-spacing:.06em;color:var(--muted)}
+tbody tr:nth-child(even){background:var(--bg)}
+tr:last-child td{border-bottom:none}
+td.t{font-variant-numeric:tabular-nums;font-weight:700;color:var(--dc)}
+.rnote{margin:0;font-size:12.5px;color:var(--muted)}
+footer{margin-top:28px;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>路线表 <span>🚕</span></h1>
+    <p>每天几点去哪里、怎么去、多远、要多久。住宿：松亭 Airbnb（송정광어골로 29, 4F）。</p>
+  </header>
+  <nav class="days" aria-label="跳到">
+    <a href="./">← 回行程主页</a>
+    <a href="#day1"><span class="dot" style="background:var(--d1)"></span>Day 1</a><a href="#day2"><span class="dot" style="background:var(--d2)"></span>Day 2</a><a href="#day3"><span class="dot" style="background:var(--d3)"></span>Day 3</a>
+  </nav>
+  <section id="day1" style="--dc:var(--d1)">
+    <div class="day-head"><div class="d">DAY 1</div><h2>1/5（二） 抵达釜山 · 西面汤饭 · 回松亭</h2></div>
+    <div class="tbl"><table><thead><tr><th>时间</th><th>安排</th><th>怎么去</th><th>距离</th><th>车程</th></tr></thead><tbody><tr><td class="t">12:20</td><td>✈️ 落地仁川机场，入境、拿行李</td><td>—</td><td>—</td><td>约 1 小时</td></tr><tr><td class="t">13:30</td><td>🚆 机场快线 AREX 直达车 → 首尔站</td><td>🚆 AREX</td><td>约 58 km</td><td>约 45 分钟</td></tr><tr><td class="t">15:00</td><td>🚄 <b>KTX 首尔站 → 釜山站</b></td><td>🚄 KTX</td><td>约 400 km</td><td>约 2.5 小时</td></tr><tr><td class="t">17:45</td><td>📍 到釜山站</td><td>—</td><td>—</td><td>—</td></tr><tr><td class="t">18:15</td><td>🍲 西面 · 松亭三代汤饭</td><td>🚕 Venti</td><td>6.3 km</td><td>约 15–20 分钟</td></tr><tr><td class="t">19:45</td><td>🏠 <b>回 Airbnb</b>（约 20:30 到）</td><td>🚕 Venti</td><td>17.3 km</td><td>约 40 分钟</td></tr></tbody></table></div>
+    <p class="rnote">距离和车程是一般路况的估计。今天搬着行李，坐 Kakao T 벤티 Venti 大型车，车资会比一般出租车贵一些。KTX 时间以实际订到的班次为准。</p>
+    <a class="btn" href="./#day1">看 Day 1 的每一站 →</a>
+  </section>
+  <section id="day2" style="--dc:var(--d2)">
+    <div class="day-head"><div class="d">DAY 2</div><h2>1/6（三） 海云台 · 青沙浦咖啡 · 日落天空胶囊 · 游艇 · 广安里</h2></div>
+    <div class="tbl"><table><thead><tr><th>时间</th><th>安排</th><th>怎么去</th><th>距离</th><th>车程</th></tr></thead><tbody><tr><td class="t">09:00</td><td>🏠 Airbnb 出发</td><td>🚕 出租车</td><td>4.6 km</td><td>约 12 分钟</td></tr><tr><td class="t">09:30</td><td>🍲 锦水河豚汤</td><td>—</td><td>—</td><td>—</td></tr><tr><td class="t">10:30</td><td>🏖️ 海云台海边散步</td><td>🚶 走路</td><td>就在旁边</td><td>—</td></tr><tr><td class="t">12:00</td><td>🎁 Busan Bada Sand</td><td>🚶 走路</td><td>0.9 km</td><td>约 12 分钟</td></tr><tr><td class="t">12:15</td><td>🍢 海云台市场买小吃当午餐</td><td>🚶 走路</td><td>很近</td><td>约 5 分钟</td></tr><tr><td class="t">13:00</td><td>🏠 回 Airbnb 放伴手礼、休息</td><td>🚕 出租车</td><td>5.2 km</td><td>约 15 分钟</td></tr><tr><td class="t">14:00</td><td>☕ <b>Broni</b></td><td>🚕 出租车</td><td>2.8 km</td><td>约 8 分钟</td></tr><tr><td class="t">15:30</td><td>☕ <b>Liberta</b></td><td>🚶 走路</td><td>100 m</td><td>2 分钟</td></tr><tr><td class="t">16:45</td><td>🚃 走到青沙浦站</td><td>🚶 走路</td><td>400 m</td><td>5 分钟</td></tr><tr><td class="t">16:50</td><td>🌅 <b>天空胶囊 · 日落场</b> → 尾浦</td><td>🚃 胶囊</td><td>海边</td><td>约 30 分钟</td></tr><tr><td class="t">17:30</td><td>🍦 海云台市场 · 蜂蜜冰淇淋</td><td>🚶 走路</td><td>1.3 km</td><td>约 15 分钟</td></tr><tr><td class="t">18:00</td><td>🍖 海云台母牛排骨</td><td>🚶 走路</td><td>200 m</td><td>3 分钟</td></tr><tr><td class="t">19:30</td><td>🛥️ 去游艇码头</td><td>🚕 出租车</td><td>3.3 km</td><td>约 10 分钟</td></tr><tr><td class="t">20:00</td><td>🛥️ Yholic 游艇 · 烟花场</td><td>—</td><td>—</td><td>约 50 分钟</td></tr><tr><td class="t">21:00</td><td>🌃 <b>广安里海边散步</b></td><td>🚕 出租车</td><td>2.5 km</td><td>约 8 分钟</td></tr><tr><td class="t">22:00</td><td>🏠 回 Airbnb</td><td>🚕 出租车</td><td>10.3 km</td><td>约 20–25 分钟</td></tr></tbody></table></div>
+    <p class="rnote">距离和车程是一般路况的估计。19:00 前后海云台比较塞。出租车大约：3 km 内 5,000–6,000 韩元、5 km 约 7,000–8,000 韩元、10 km 约 12,000–14,000 韩元。</p>
+    <a class="btn" href="./#day2">看 Day 2 的每一站 →</a>
+  </section>
+  <section id="day3" style="--dc:var(--d3)">
+    <div class="day-head"><div class="d">DAY 3</div><h2>1/7（四） 西面 · 松岛缆车 · 影岛日落 · 南浦</h2></div>
+    <div class="tbl"><table><thead><tr><th>时间</th><th>安排</th><th>怎么去</th><th>距离</th><th>车程</th></tr></thead><tbody><tr><td class="t">10:00</td><td>🏠 Airbnb 出发</td><td>🚕 出租车</td><td>17.5 km</td><td>约 40 分钟</td></tr><tr><td class="t">11:00</td><td>🍜 春夏秋冬冷小麦面</td><td>—</td><td>—</td><td>—</td></tr><tr><td class="t">12:00</td><td>☕ 田浦咖啡街</td><td>🚶 走路</td><td>1.0 km</td><td>约 12 分钟</td></tr><tr><td class="t">12:15</td><td>🥭 녹카페 · 抹茶芒果冰</td><td>🚶 走路</td><td>500 m</td><td>约 6 分钟</td></tr><tr><td class="t">13:15</td><td>🚡 去松岛</td><td>🚕 出租车</td><td>14.5 km</td><td>约 30 分钟</td></tr><tr><td class="t">13:45</td><td>🚡 <b>松岛海上缆车</b></td><td>—</td><td>—</td><td>约 1 小时</td></tr><tr><td class="t">15:10</td><td>🦪 影岛海女村</td><td>🚕 出租车</td><td>5.2 km</td><td>约 15 分钟</td></tr><tr><td class="t">16:00</td><td>🍢 三进鱼糕</td><td>🚕 出租车</td><td>4.3 km</td><td>约 12 分钟</td></tr><tr><td class="t">16:40</td><td>🌅 <b>白浅滩文化村 · 日落</b></td><td>🚕 出租车</td><td>2.2 km</td><td>约 8 分钟</td></tr><tr><td class="t">18:00</td><td>🍡 BIFF 广场坚果糖饼</td><td>🚕 出租车</td><td>3.7 km</td><td>约 12 分钟</td></tr><tr><td class="t">18:15</td><td>🐟 <b>札嘎其市场生鱼片</b></td><td>🚶 走路</td><td>600 m</td><td>约 8 分钟</td></tr><tr><td class="t">20:00</td><td>🏠 回 Airbnb（约 20:50 到）</td><td>🚕 出租车</td><td>24.5 km</td><td>约 45–50 分钟</td></tr></tbody></table></div>
+    <p class="rnote">距离和车程是一般路况的估计。今天在西边跑，离 Airbnb 比较远。出租车大约：3 km 内 5,000–6,000 韩元、5 km 约 7,000–8,000 韩元、15 km 约 16,000–18,000 韩元，晚上回松亭约 25,000–30,000 韩元。</p>
+    <a class="btn" href="./#day3">看 Day 3 的每一站 →</a>
+  </section>
+  <footer>距离是按地图估算的路程，车程看当天路况；出租车车资是大概的价格。</footer>
+</div>
+</body>
+</html>
