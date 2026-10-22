@@ -40,9 +40,6 @@ a:focus-visible{outline:2px solid var(--sea);outline-offset:2px;border-radius:99
 .hero p{color:var(--muted);font-size:14.5px;max-width:46ch}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:2px}
 .legend span{display:inline-flex;align-items:center;gap:7px}
-.legend i{display:inline-block;width:22px;height:3px;border-radius:2px;background:var(--ink)}
-.legend i.walk{background:repeating-linear-gradient(90deg,var(--ink) 0 4px,transparent 4px 8px)}
-.legend i.train{height:5px;background:repeating-linear-gradient(90deg,var(--ink) 0 8px,transparent 8px 10px)}
 
 nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);margin-inline:-16px;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
 nav.days::-webkit-scrollbar{display:none}
@@ -59,26 +56,20 @@ nav.days a:first-child{background:var(--ink);color:var(--bg);border-color:var(--
 .stats{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px}
 .stats span{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-variant-numeric:tabular-nums}
 
-.tl{list-style:none;margin:0;padding:22px 16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
-.tl li{display:grid;grid-template-columns:3.4rem 22px minmax(0,1fr);column-gap:10px;align-items:center}
-.rail{grid-column:2;align-self:stretch;position:relative;display:block}
-.rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;background:var(--dc);opacity:.35;border-radius:2px}
-.leg.walk .rail::before{opacity:.6;background:repeating-linear-gradient(180deg,var(--dc) 0 4px,transparent 4px 8px)}
-.leg.train .rail::before,.leg.car .rail::before{opacity:.6}
-.leg.train .rail::before{width:5px;margin-left:-2.5px;background:repeating-linear-gradient(180deg,var(--dc) 0 8px,transparent 8px 10px)}
-.leg.stay .rail::before{opacity:.2}
-.tl li:first-child .rail::before{top:50%}
-.tl li:last-child .rail::before{bottom:50%}
-.stop .rail i{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:var(--surface);border:3px solid var(--dc);z-index:1}
+.tl{list-style:none;margin:0;padding:10px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.tl li{display:grid;grid-template-columns:3.4rem 22px minmax(0,1fr);column-gap:10px;align-items:start;padding-block:13px}
+.tl li + li{border-top:1px dashed var(--line)}
+.rail{grid-column:2;align-self:stretch;position:relative;display:block;margin-block:-13px}
+.rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;background:var(--dc);opacity:.4;border-radius:2px}
+.tl li:first-child .rail::before{top:calc(13px + .75em)}
+.tl li:last-child .rail::before{bottom:calc(100% - 13px - .75em)}
+.stop .rail i{position:absolute;left:50%;top:calc(13px + .75em);width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:var(--surface);border:3px solid var(--dc);z-index:1}
 .stop.key .rail i{width:17px;height:17px;margin:-8.5px 0 0 -8.5px;background:var(--dc);box-shadow:0 0 0 4px color-mix(in srgb,var(--dc) 18%,transparent)}
-.stop time{grid-column:1;font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;color:var(--dc);text-align:right}
-.stop .what{grid-column:3;padding-block:12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
-.stop .name{font-size:16px;font-weight:600;line-height:1.45}
-.stop.key .name{font-weight:800;font-size:17px}
-.stop .dur{font-size:12px;font-weight:600;color:var(--muted)}
-.leg{min-height:44px}
-.legchip{grid-column:3;justify-self:start;font-size:13px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;padding:4px 11px;border-radius:999px;background:var(--bg);margin-block:8px}
-.leg.stay{min-height:22px}
+.stop time{grid-column:1;font-weight:800;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums;color:var(--dc);text-align:right}
+.stop .what{grid-column:3;display:grid;gap:3px;min-width:0}
+.stop .name{font-size:16px;font-weight:600;line-height:1.5}
+.stop.key .name{font-weight:800}
+.stop .how{font-size:13px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
 
 .note{display:grid;gap:4px;padding:12px 14px;border-radius:12px;background:var(--warn-bg);color:var(--warn-ink);font-size:13.5px}
 .note b{font-size:13px}
@@ -92,7 +83,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <header class="hero">
     <h1>路线表 <span>🚕</span></h1>
     <p>每天几点到哪一站、怎么去、多远、要多久。住在松亭 Airbnb（송정광어골로 29, 4F）。</p>
-    <div class="legend"><span><i></i>坐车</span><span><i class="walk"></i>走路</span><span><i class="train"></i>火车 · 胶囊</span><span>● 大圆点 = 今天的重点</span></div>
+    <div class="legend"><span>● 大圆点 = 今天的重点</span><span>灰色小字 = 怎么去、多远、要多久</span></div>
   </header>
   <nav class="days" aria-label="跳到">
     <a href="./">← 行程主页</a>
@@ -104,16 +95,12 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
       <div class="dt"><h2 class="date">1/5（二）</h2></div>
     </header>
     <ol class="tl">
-      <li class="stop"><time>12:20</time><span class="rail"><i></i></span><div class="what"><span class="name">✈️ 落地仁川机场，入境、拿行李</span><span class="dur">约 1 小时</span></div></li>
-      <li class="stop"><time>13:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🚆 机场快线 AREX 直达车 → 首尔站</span></div></li>
-      <li class="leg train"><span class="rail"></span><span class="legchip">🚆 AREX · 约 58 km · 约 45 分钟</span></li>
-      <li class="stop key"><time>15:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🚄 KTX 首尔站 → 釜山站</span></div></li>
-      <li class="leg train"><span class="rail"></span><span class="legchip">🚄 KTX · 约 400 km · 约 2.5 小时</span></li>
+      <li class="stop"><time>12:20</time><span class="rail"><i></i></span><div class="what"><span class="name">✈️ 落地仁川机场，入境、拿行李</span><span class="how">约 1 小时</span></div></li>
+      <li class="stop"><time>13:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🚆 机场快线 AREX 直达车 → 首尔站</span><span class="how">🚆 AREX · 约 58 km · 约 45 分钟</span></div></li>
+      <li class="stop key"><time>15:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🚄 KTX 首尔站 → 釜山站</span><span class="how">🚄 KTX · 约 400 km · 约 2.5 小时</span></div></li>
       <li class="stop"><time>17:45</time><span class="rail"><i></i></span><div class="what"><span class="name">📍 到釜山站</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 Venti · 6.3 km · 约 15–20 分钟</span></li>
-      <li class="stop"><time>18:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🍲 西面 · 松亭三代汤饭</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 Venti · 17.3 km · 约 40 分钟</span></li>
-      <li class="stop key"><time>19:45</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb（约 20:30 到）</span></div></li>
+      <li class="stop"><time>18:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🍲 西面 · 松亭三代汤饭</span><span class="how">🚕 Venti · 6.3 km · 约 15–20 分钟</span></div></li>
+      <li class="stop key"><time>19:45</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb（约 20:30 到）</span><span class="how">🚕 Venti · 17.3 km · 约 40 分钟</span></div></li>
     </ol>
     <div class="note"><b>💡 小提醒</b><p>今天搬着行李，坐 Kakao T 벤티 Venti 大型车，车资会比一般出租车贵一些。KTX 时间以实际订到的班次为准。 距离和车程是一般路况的估计。</p></div>
     <a class="btn" href="./#day1">看 Day 1 的每一站和照片 →</a>
@@ -124,36 +111,22 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
       <div class="dt"><h2 class="date">1/6（三）</h2></div>
     </header>
     <ol class="tl">
-      <li class="stop"><time>09:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 4.6 km · 约 12 分钟</span></li>
+      <li class="stop"><time>09:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span><span class="how">🚕 出租车 · 4.6 km · 约 12 分钟</span></div></li>
       <li class="stop"><time>09:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🍲 锦水河豚汤</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 就在旁边</span></li>
-      <li class="stop"><time>10:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🏖️ 海云台海边散步</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 0.9 km · 约 12 分钟</span></li>
-      <li class="stop"><time>12:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🎁 Busan Bada Sand</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 很近 · 约 5 分钟</span></li>
-      <li class="stop"><time>12:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🍢 海云台市场买小吃当午餐</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 5.2 km · 约 15 分钟</span></li>
-      <li class="stop"><time>13:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb 放伴手礼、休息</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 2.8 km · 约 8 分钟</span></li>
-      <li class="stop key"><time>14:00</time><span class="rail"><i></i></span><div class="what"><span class="name">☕ Broni</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 100 m · 2 分钟</span></li>
-      <li class="stop key"><time>15:30</time><span class="rail"><i></i></span><div class="what"><span class="name">☕ Liberta</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 400 m · 5 分钟</span></li>
-      <li class="stop"><time>16:45</time><span class="rail"><i></i></span><div class="what"><span class="name">🚃 走到青沙浦站</span></div></li>
-      <li class="stop key"><time>16:50</time><span class="rail"><i></i></span><div class="what"><span class="name">🌅 天空胶囊 · 日落场 → 尾浦</span></div></li>
-      <li class="leg train"><span class="rail"></span><span class="legchip">🚃 胶囊 · 海边 · 约 30 分钟</span></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 1.3 km · 约 15 分钟</span></li>
-      <li class="stop"><time>17:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🍦 海云台市场 · 蜂蜜冰淇淋</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 200 m · 3 分钟</span></li>
-      <li class="stop"><time>18:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🍖 海云台母牛排骨</span></div></li>
-      <li class="stop"><time>19:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🛥️ 去游艇码头</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 3.3 km · 约 10 分钟</span></li>
-      <li class="stop"><time>20:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🛥️ Yholic 游艇 · 烟花场</span><span class="dur">约 50 分钟</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 2.5 km · 约 8 分钟</span></li>
-      <li class="stop key"><time>21:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🌃 广安里海边散步</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 10.3 km · 约 20–25 分钟</span></li>
-      <li class="stop"><time>22:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb</span></div></li>
+      <li class="stop"><time>10:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🏖️ 海云台海边散步</span><span class="how">🚶 走路 · 就在旁边</span></div></li>
+      <li class="stop"><time>12:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🎁 Busan Bada Sand</span><span class="how">🚶 走路 · 0.9 km · 约 12 分钟</span></div></li>
+      <li class="stop"><time>12:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🍢 海云台市场买小吃当午餐</span><span class="how">🚶 走路 · 很近 · 约 5 分钟</span></div></li>
+      <li class="stop"><time>13:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb 放伴手礼、休息</span><span class="how">🚕 出租车 · 5.2 km · 约 15 分钟</span></div></li>
+      <li class="stop key"><time>14:00</time><span class="rail"><i></i></span><div class="what"><span class="name">☕ Broni</span><span class="how">🚕 出租车 · 2.8 km · 约 8 分钟</span></div></li>
+      <li class="stop key"><time>15:30</time><span class="rail"><i></i></span><div class="what"><span class="name">☕ Liberta</span><span class="how">🚶 走路 · 100 m · 2 分钟</span></div></li>
+      <li class="stop"><time>16:45</time><span class="rail"><i></i></span><div class="what"><span class="name">🚃 走到青沙浦站</span><span class="how">🚶 走路 · 400 m · 5 分钟</span></div></li>
+      <li class="stop key"><time>16:50</time><span class="rail"><i></i></span><div class="what"><span class="name">🌅 天空胶囊 · 日落场 → 尾浦</span><span class="how">🚃 胶囊 · 海边 · 约 30 分钟</span></div></li>
+      <li class="stop"><time>17:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🍦 海云台市场 · 蜂蜜冰淇淋</span><span class="how">🚶 走路 · 1.3 km · 约 15 分钟</span></div></li>
+      <li class="stop"><time>18:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🍖 海云台母牛排骨</span><span class="how">🚶 走路 · 200 m · 3 分钟</span></div></li>
+      <li class="stop"><time>19:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🛥️ 去游艇码头</span><span class="how">🚕 出租车 · 3.3 km · 约 10 分钟</span></div></li>
+      <li class="stop"><time>20:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🛥️ Yholic 游艇 · 烟花场</span><span class="how">约 50 分钟</span></div></li>
+      <li class="stop key"><time>21:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🌃 广安里海边散步</span><span class="how">🚕 出租车 · 2.5 km · 约 8 分钟</span></div></li>
+      <li class="stop"><time>22:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb</span><span class="how">🚕 出租车 · 10.3 km · 约 20–25 分钟</span></div></li>
     </ol>
     <div class="note"><b>💡 小提醒</b><p>19:00 前后海云台比较塞。出租车大约：3 km 内 5,000–6,000 韩元、5 km 约 7,000–8,000 韩元、10 km 约 12,000–14,000 韩元。 距离和车程是一般路况的估计。</p></div>
     <a class="btn" href="./#day2">看 Day 2 的每一站和照片 →</a>
@@ -164,28 +137,18 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
       <div class="dt"><h2 class="date">1/7（四）</h2></div>
     </header>
     <ol class="tl">
-      <li class="stop"><time>10:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 17.5 km · 约 40 分钟</span></li>
+      <li class="stop"><time>10:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span><span class="how">🚕 出租车 · 17.5 km · 约 40 分钟</span></div></li>
       <li class="stop"><time>11:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🍜 春夏秋冬冷小麦面</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 1.0 km · 约 12 分钟</span></li>
-      <li class="stop"><time>12:00</time><span class="rail"><i></i></span><div class="what"><span class="name">☕ 田浦咖啡街</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 500 m · 约 6 分钟</span></li>
-      <li class="stop"><time>12:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🥭 녹카페 · 抹茶芒果冰</span></div></li>
-      <li class="stop"><time>13:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🚡 去松岛</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 14.5 km · 约 30 分钟</span></li>
-      <li class="stop key"><time>13:45</time><span class="rail"><i></i></span><div class="what"><span class="name">🚡 松岛海上缆车</span><span class="dur">约 1 小时</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 5.2 km · 约 15 分钟</span></li>
-      <li class="stop"><time>15:10</time><span class="rail"><i></i></span><div class="what"><span class="name">🦪 影岛海女村</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 4.3 km · 约 12 分钟</span></li>
-      <li class="stop"><time>16:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🍢 三进鱼糕</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 2.2 km · 约 8 分钟</span></li>
-      <li class="stop key"><time>16:40</time><span class="rail"><i></i></span><div class="what"><span class="name">🌅 白浅滩文化村 · 日落</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 3.7 km · 约 12 分钟</span></li>
-      <li class="stop"><time>18:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🍡 BIFF 广场坚果糖饼</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 600 m · 约 8 分钟</span></li>
-      <li class="stop key"><time>18:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🐟 札嘎其市场生鱼片</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 出租车 · 24.5 km · 约 45–50 分钟</span></li>
-      <li class="stop"><time>20:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb（约 20:50 到）</span></div></li>
+      <li class="stop"><time>12:00</time><span class="rail"><i></i></span><div class="what"><span class="name">☕ 田浦咖啡街</span><span class="how">🚶 走路 · 1.0 km · 约 12 分钟</span></div></li>
+      <li class="stop"><time>12:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🥭 녹카페 · 抹茶芒果冰</span><span class="how">🚶 走路 · 500 m · 约 6 分钟</span></div></li>
+      <li class="stop"><time>13:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🚡 去松岛</span><span class="how">🚕 出租车 · 14.5 km · 约 30 分钟</span></div></li>
+      <li class="stop key"><time>13:45</time><span class="rail"><i></i></span><div class="what"><span class="name">🚡 松岛海上缆车</span><span class="how">约 1 小时</span></div></li>
+      <li class="stop"><time>15:10</time><span class="rail"><i></i></span><div class="what"><span class="name">🦪 影岛海女村</span><span class="how">🚕 出租车 · 5.2 km · 约 15 分钟</span></div></li>
+      <li class="stop"><time>16:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🍢 三进鱼糕</span><span class="how">🚕 出租车 · 4.3 km · 约 12 分钟</span></div></li>
+      <li class="stop key"><time>16:40</time><span class="rail"><i></i></span><div class="what"><span class="name">🌅 白浅滩文化村 · 日落</span><span class="how">🚕 出租车 · 2.2 km · 约 8 分钟</span></div></li>
+      <li class="stop"><time>18:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🍡 BIFF 广场坚果糖饼</span><span class="how">🚕 出租车 · 3.7 km · 约 12 分钟</span></div></li>
+      <li class="stop key"><time>18:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🐟 札嘎其市场生鱼片</span><span class="how">🚶 走路 · 600 m · 约 8 分钟</span></div></li>
+      <li class="stop"><time>20:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 回 Airbnb（约 20:50 到）</span><span class="how">🚕 出租车 · 24.5 km · 约 45–50 分钟</span></div></li>
     </ol>
     <div class="note"><b>💡 小提醒</b><p>今天在西边跑，离 Airbnb 比较远。出租车大约：3 km 内 5,000–6,000 韩元、5 km 约 7,000–8,000 韩元、15 km 约 16,000–18,000 韩元，晚上回松亭约 25,000–30,000 韩元。 距离和车程是一般路况的估计。</p></div>
     <a class="btn" href="./#day3">看 Day 3 的每一站和照片 →</a>
@@ -197,12 +160,9 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
     </header>
     <ol class="tl">
       <li class="stop"><time>11:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🧳 退房</span></div></li>
-      <li class="leg walk"><span class="rail"></span><span class="legchip">🚶 走路 · 附近</span></li>
-      <li class="stop"><time>11:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🍳 松亭附近吃早午餐（到了自己找）</span></div></li>
-      <li class="stop"><time>12:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🚕 去釜山站</span></div></li>
-      <li class="leg car"><span class="rail"></span><span class="legchip">🚕 Venti · 约 21 km · 约 45–50 分钟</span></li>
-      <li class="stop key"><time>13:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🚄 KTX 釜山站 → 首尔站</span></div></li>
-      <li class="leg train"><span class="rail"></span><span class="legchip">🚄 KTX · 约 400 km · 约 2.5 小时</span></li>
+      <li class="stop"><time>11:15</time><span class="rail"><i></i></span><div class="what"><span class="name">🍳 松亭附近吃早午餐（到了自己找）</span><span class="how">🚶 走路 · 附近</span></div></li>
+      <li class="stop"><time>12:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🚕 去釜山站</span><span class="how">🚕 Venti · 约 21 km · 约 45–50 分钟</span></div></li>
+      <li class="stop key"><time>13:30</time><span class="rail"><i></i></span><div class="what"><span class="name">🚄 KTX 釜山站 → 首尔站</span><span class="how">🚄 KTX · 约 400 km · 约 2.5 小时</span></div></li>
       <li class="stop"><time>16:00</time><span class="rail"><i></i></span><div class="what"><span class="name">📍 到首尔站</span></div></li>
     </ol>
     <div class="note"><b>💡 小提醒</b><p>今天搬着行李，坐 Kakao T 벤티 Venti 大型车，车资会比一般出租车贵一些。周五中午出城方向可能比较塞，提早出发。 距离和车程是一般路况的估计。</p></div>
