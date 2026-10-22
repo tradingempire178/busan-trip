@@ -46,8 +46,8 @@ h1,h2,h3{margin:0;text-wrap:balance}
 @keyframes pop-in{0%{opacity:0;transform:translateY(30px) scale(.5)}55%{opacity:1;transform:translateY(-8px) scale(1.12)}100%{opacity:1;transform:none}}
 .motion .reveal{transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .motion .reveal:not(.in){opacity:.25;transform:translateY(16px)}
-.motion .daybar{isolation:isolate;transition:color .35s ease .25s}
-.motion .daybar::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--dc);transform:scaleX(0);transform-origin:0 50%;transition:transform .75s cubic-bezier(.16,1,.3,1)}
+.motion .daybar{isolation:isolate;transition:color .4s ease .45s}
+.motion .daybar::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--dc);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.1s cubic-bezier(.65,0,.35,1)}
 .motion .daybar:not(.painted){background:color-mix(in srgb,var(--dc) 22%,var(--bg));color:var(--ink)}
 .motion .daybar.painted::before{transform:scaleX(1)}
 
@@ -416,8 +416,15 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObse
   cards.forEach(c => c.classList.add("reveal"));
   const cio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); cio.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
   cards.forEach(c => cio.observe(c));
-  const bio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("painted"); bio.unobserve(e.target); } }), { rootMargin: "0px 0px -15% 0px" });
-  document.querySelectorAll(".daybar").forEach(b => bio.observe(b));
+  // paint a day bar when it reaches the top of the screen (where the eye is), not when it first peeks in at the bottom
+  let bars = [...document.querySelectorAll(".daybar")];
+  const paint = () => {
+    const at = navEl.getBoundingClientRect().bottom + innerHeight * 0.25;
+    bars = bars.filter(b => { if (b.getBoundingClientRect().top <= at) { b.classList.add("painted"); return false; } return true; });
+  };
+  let pq = false;
+  addEventListener("scroll", () => { if (bars.length && !pq) { pq = true; requestAnimationFrame(() => { pq = false; paint(); }); } }, { passive: true });
+  setTimeout(paint, 300);
 }
 
 const byId = {};
