@@ -56,17 +56,17 @@ nav.days a:first-child{background:var(--ink);color:var(--bg);border-color:var(--
 .stats{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px}
 .stats span{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-variant-numeric:tabular-nums}
 
-.tl{list-style:none;margin:0;padding:10px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
-.tl li{display:grid;grid-template-columns:3.4rem 22px minmax(0,1fr);column-gap:10px;align-items:start;padding-block:13px}
+.tl{list-style:none;margin:0;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.tl li{display:grid;grid-template-columns:3.4rem 22px minmax(0,1fr);column-gap:10px;align-items:start;padding-block:18px}
 .tl li + li{border-top:1px dashed var(--line)}
-.rail{grid-column:2;align-self:stretch;position:relative;display:block;margin-block:-13px}
+.rail{grid-column:2;align-self:stretch;position:relative;display:block;margin-block:-18px}
 .rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;background:var(--dc);opacity:.4;border-radius:2px}
-.tl li:first-child .rail::before{top:calc(13px + .75em)}
-.tl li:last-child .rail::before{bottom:calc(100% - 13px - .75em)}
-.stop .rail i{position:absolute;left:50%;top:calc(13px + .75em);width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:var(--surface);border:3px solid var(--dc);z-index:1}
+.tl li:first-child .rail::before{top:calc(18px + .75em)}
+.tl li:last-child .rail::before{bottom:calc(100% - 18px - .75em)}
+.stop .rail i{position:absolute;left:50%;top:calc(18px + .75em);width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:var(--surface);border:3px solid var(--dc);z-index:1}
 .stop.key .rail i{width:17px;height:17px;margin:-8.5px 0 0 -8.5px;background:var(--dc);box-shadow:0 0 0 4px color-mix(in srgb,var(--dc) 18%,transparent)}
 .stop time{grid-column:1;font-weight:800;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums;color:var(--dc);text-align:right}
-.stop .what{grid-column:3;display:grid;gap:3px;min-width:0}
+.stop .what{grid-column:3;display:grid;gap:5px;min-width:0}
 .stop .name{font-size:16px;font-weight:600;line-height:1.5}
 .stop.key .name{font-weight:800}
 .stop .how{font-size:13px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
