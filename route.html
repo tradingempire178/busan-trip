@@ -203,7 +203,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   const play = tl => {
     const st = state.get(tl); cancelAnimationFrame(st.raf);
     const items = [...tl.querySelectorAll("li")], p = tl.querySelector(".prog");
-    const fr = measure(tl), dur = Math.max(3200, Math.min(5600, items.length * 400));
+    const fr = measure(tl), dur = Math.max(2500, Math.min(4500, items.length * 320));
     items.forEach(li => li.classList.remove("lit"));
     p.style.transform = "scaleY(0)";
     let t0 = null, next = 0;
