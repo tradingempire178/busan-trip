@@ -196,7 +196,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-const CRED = {"ktx": ["CC BY 2.0", "Doug Letterman from Oakland, CA", "https://commons.wikimedia.org/wiki/File:KTX-I_in_Busan_Station_(15618537248).jpg"], "huinnyeoul": ["CC0", "Choi2451", "https://commons.wikimedia.org/wiki/File:Huinnyeoul_culture_village,_Busan_on_October_25th,_2019.jpg"], "capsule": ["CC BY-SA 4.0", "VN.NguyenDucDuy", "https://commons.wikimedia.org/wiki/File:Sky_Capsule_train_at_Haeundae_Blueline_Park,_Busan.jpg"], "market": ["CC BY-SA 3.0", "HappyMidnight", "https://commons.wikimedia.org/wiki/File:Haeundae_market_(%ED%95%B4%EC%9A%B4%EB%8C%80%EC%8B%9C%EC%9E%A5).JPG"], "galbi": ["CC0", "김태경", "https://commons.wikimedia.org/wiki/File:Galbi-gui_1.jpg"], "jeonpo": ["CC BY 2.0", "Petr Meissner", "https://commons.wikimedia.org/wiki/File:Jeonpo-dong,_Busan,_South_Korea.jpg"], "gwangalli": ["CC0", "lumoplank", "https://commons.wikimedia.org/wiki/File:Gwangan_Bridge_and_Gwangalli_Beach_-_Gwangalli2721.jpg"]};
+const CRED = {"huinnyeoul": ["CC0", "Choi2451", "https://commons.wikimedia.org/wiki/File:Huinnyeoul_culture_village,_Busan_on_October_25th,_2019.jpg"], "market": ["CC BY-SA 3.0", "HappyMidnight", "https://commons.wikimedia.org/wiki/File:Haeundae_market_(%ED%95%B4%EC%9A%B4%EB%8C%80%EC%8B%9C%EC%9E%A5).JPG"], "galbi": ["CC0", "김태경", "https://commons.wikimedia.org/wiki/File:Galbi-gui_1.jpg"], "jeonpo": ["CC BY 2.0", "Petr Meissner", "https://commons.wikimedia.org/wiki/File:Jeonpo-dong,_Busan,_South_Korea.jpg"], "gwangalli": ["CC0", "lumoplank", "https://commons.wikimedia.org/wiki/File:Gwangan_Bridge_and_Gwangalli_Beach_-_Gwangalli2721.jpg"]};
 
 const BOOK = [
   {t:"KTX：1/5 首尔 → 釜山、1/8 釜山 → 首尔", p:"建议 1/5 订 15:00–15:30 从首尔站出发；1/8 订约 12:30 从釜山站出发（约 15:00 到首尔）。出发前约 60 天开卖：1/5 的票约 11/6、1/8 的票约 11/9 开卖。官方 App 已改名 Korail+。", links:[["LetsKorail 官网","https://www.letskorail.com/"],["Klook 也能订","https://www.klook.com/search/result/?query=KTX"]], must:true},
@@ -218,15 +218,15 @@ const DAYS = [
    warn:"4 个人加 4 个大行李箱，一般出租车塞不下：用 Kakao T 叫「벤티 Venti」大型车，或叫两台。", book:[["订 KTX","https://www.letskorail.com/"]]},
   {id:"songjeong", hours:"24 小时，全年无休", time:"19:00 晚餐", cat:"老字号", cn:"松亭三代汤饭", kr:"송정3대국밥", ll:[35.15574,129.05855], img:"gukbap", real:true,
    rating:["4.8","Trip.com · 127 条评论"], notes:["1946 年开业，在西面市场的猪肉汤饭巷","必点：猪肉汤饭（돼지국밥）、水煮猪肉拼盘（수육）","吃完直接坐车回松亭 Airbnb，约 40 分钟"]},
-  {id:"airbnb", time:"约 20:30 入住", cat:"住宿", cn:"我们的 Airbnb（松亭）", kr:"부산 해운대구 송정광어골로 29, 4층", ll:[35.17835,129.19697], nopin:true, icon:"🏠",
-   notes:["英文地址：29 Songjeonggwangeogol-ro 4F, Haeundae-gu, Busan 48073","在松亭海滩附近，地图上的 🏠 就是这里","从西面坐出租车约 40 分钟","坐出租车时，按「复制韩文」把韩文地址给司机看"]},
   {id:"ssangdungi", hours:"09:00–22:00", alt:true, time:"备选", cat:"餐厅", cn:"双胞胎猪肉汤饭", kr:"쌍둥이돼지국밥", ll:[35.13364,129.09214], img:"gukbap2", real:true,
    notes:["在南区大渊洞，也是很有名的汤饭店","和松亭三代是同一种料理，二选一就好"]},
+  {id:"airbnb", time:"约 20:30 入住", cat:"住宿", cn:"我们的 Airbnb（松亭）", kr:"부산 해운대구 송정광어골로 29, 4층", ll:[35.17835,129.19697], nopin:true, img:"airbnb", real:true,
+   notes:["英文地址：29 Songjeonggwangeogol-ro 4F, Haeundae-gu, Busan 48073","在松亭海滩附近，地图上的 🏠 就是这里","从西面坐出租车约 40 分钟","坐出租车时，按「复制韩文」把韩文地址给司机看"]},
  ]},
  {n:2, date:"1/6（三）", title:"海云台 · 青沙浦咖啡 · 日落天空胶囊 · 游艇 · 广安里", sub:"整天从东往西走：上午海云台，下午青沙浦两家咖啡，坐天空胶囊看日落，晚上游艇和广安里夜景。", stops:[
   {id:"geumsu", hours:"24 小时", time:"09:30 早餐", cat:"老字号", cn:"锦水河豚汤 海云台本店", kr:"금수복국 해운대본점", ll:[35.16242,129.16448], img:"bokguk", real:true,
    rating:["4.6","Trip.com · 61 条评论"], notes:["从 Airbnb 坐出租车约 12 分钟（4.6 km）","1970 年开业，第一家用砂锅煮河豚汤的店","吃完去海云台海边散步"]},
-  {id:"badasand", hours:"约 12:00–19:00（2023 年资料），每天限量，很快卖完", time:"12:00", cat:"伴手礼", cn:"Busan Bada Sand 伴手礼", kr:"부산바다샌드", ll:[35.16489,129.15803], icon:"🎁", notes:["地址：부산 해운대구 우동1로38번가길 11（海云台站附近）","开门就去买，卖完的机会最小","买完在旁边的海云台市场买小吃当午餐，再坐车回 Airbnb 放伴手礼（约 15 分钟）"], warn:"去之前看 Instagram @busan.bada.sand 有没有休息或售罄公告。", book:[["Instagram","https://www.instagram.com/busan.bada.sand/"]]},
+  {id:"badasand", hours:"约 12:00–19:00（2023 年资料），每天限量，很快卖完", time:"12:00", cat:"伴手礼", cn:"Busan Bada Sand 伴手礼", kr:"부산바다샌드", ll:[35.16489,129.15803], img:"badasand", real:true, notes:["地址：부산 해운대구 우동1로38번가길 11（海云台站附近）","开门就去买，卖完的机会最小","买完在旁边的海云台市场买小吃当午餐，再坐车回 Airbnb 放伴手礼（约 15 分钟）"], warn:"去之前看 Instagram @busan.bada.sand 有没有休息或售罄公告。", book:[["Instagram","https://www.instagram.com/busan.bada.sand/"]]},
   {id:"broni", hours:"约 11:00–21:00（网上资料，出发前确认）", time:"14:00", cat:"咖啡", cn:"青沙浦 Café Broni", kr:"브로니 청사포", ll:[35.1601,129.1935], approx:true, img:"cheongsapo", real:true,
    notes:["从 Airbnb 坐出租车约 8 分钟（2.8 km）","三层楼的海景咖啡，顶楼有懒人沙发","中午只吃小吃，可以在这里点甜点"]},
   {id:"liberta", hours:"约 10:00–20:00（2024 年资料，出发前确认）", time:"15:30", cat:"咖啡", cn:"Liberta 청사포", kr:"리베르타 청사포", ll:[35.1606,129.1942], approx:true, img:"liberta", real:true,
