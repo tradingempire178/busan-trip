@@ -143,7 +143,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
       <span class="fact">🚄 仁川 → KTX → 釜山</span>
       <span class="fact">🌡️ 1 月约 0–8°C，海边风大</span>
       <span class="fact">🏠 住松亭 Airbnb</span>
-      <span class="fact">🔙 1/8 约 12:30 KTX 回首尔</span>
+      <span class="fact">🔙 1/8 约 13:30 KTX 回首尔</span>
     </div>
   </header>
 
@@ -199,7 +199,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 const CRED = {"huinnyeoul": ["CC0", "Choi2451", "https://commons.wikimedia.org/wiki/File:Huinnyeoul_culture_village,_Busan_on_October_25th,_2019.jpg"], "galbi": ["CC0", "김태경", "https://commons.wikimedia.org/wiki/File:Galbi-gui_1.jpg"], "jeonpo": ["CC BY 2.0", "Petr Meissner", "https://commons.wikimedia.org/wiki/File:Jeonpo-dong,_Busan,_South_Korea.jpg"], "gwangalli": ["CC0", "lumoplank", "https://commons.wikimedia.org/wiki/File:Gwangan_Bridge_and_Gwangalli_Beach_-_Gwangalli2721.jpg"]};
 
 const BOOK = [
-  {t:"KTX：1/5 首尔 → 釜山、1/8 釜山 → 首尔", p:"建议 1/5 订 15:00–15:30 从首尔站出发；1/8 订约 12:30 从釜山站出发（约 15:00 到首尔）。出发前约 60 天开卖：1/5 的票约 11/6、1/8 的票约 11/9 开卖。官方 App 已改名 Korail+。", links:[["LetsKorail 官网","https://www.letskorail.com/"],["Klook 也能订","https://www.klook.com/search/result/?query=KTX"]], must:true},
+  {t:"KTX：1/5 首尔 → 釜山、1/8 釜山 → 首尔", p:"建议 1/5 订 15:00–15:30 从首尔站出发；1/8 订约 13:30 从釜山站出发（约 16:00 到首尔）。出发前约 60 天开卖：1/5 的票约 11/6、1/8 的票约 11/9 开卖。官方 App 已改名 Korail+。", links:[["LetsKorail 官网","https://www.letskorail.com/"],["Klook 也能订","https://www.klook.com/search/result/?query=KTX"]], must:true},
   {t:"日落天空胶囊列车（1/6）", p:"订 16:30–17:00 从青沙浦往尾浦出发的班次，坐到一半刚好日落（约 17:25）。每个车厢最多 4 人。日落时段最抢手，官网一开放就要订。", links:[["Blueline Park 官网订票","https://www.bluelinepark.com/eng/"]], must:true},
   {t:"Yholic 游艇夜游 · 烟花场次（1/6 晚上）", p:"选「含烟花 Fireworks」的 20:00 场次。集合在水营湾游艇码头（수영만요트경기장），约 50 分钟。最晚前一天中午 12 点前订好；3 天前取消全额退款。", links:[["Yholic 订票（Trazy）","https://www.trazy.com/experience/detail/busan-yacht-tour-private-public-y-holic"]], must:true},
   {t:"K-ETA 电子旅行许可（马来西亚护照）", p:"订机票前先上官网确认马来西亚护照现在需不需要申请，政策会变。", links:[["K-ETA 官网","https://www.k-eta.go.kr/"]], must:true},
@@ -264,12 +264,19 @@ const DAYS = [
   {id:"seongil", hours:"11:00–23:00", alt:true, time:"晚餐 B", cat:"餐厅", cn:"成日家烤盲鳗", kr:"성일집", ll:[35.0958,129.0368], approx:true, img:"hagfish", real:true,
    notes:["盐烤（소금구이）或辣酱烤（양념구이）","网上资料：辣酱烤约 18,000 韩元"]},
  ]},
- {n:4, date:"1/8（五）", title:"退房 · 新发园 · 回首尔", sub:"11 点退房后直接去釜山站，吃新发园当早午餐，下午 3 点左右到首尔。", stops:[
-  {id:"sinbalwon", hours:"网上查不到，出发前用 Naver 确认；排队多", time:"12:00 早午餐", cat:"老字号", cn:"新发园", kr:"신발원", ll:[35.1153,129.0393], approx:true, img:"mandu", real:true,
-   rating:["4.5","Trip.com · 515 条评论"], notes:["11:00 退房，叫 Kakao T 벤티 Venti 大型车去釜山站，约 50 分钟","釜山站对面、唐人街入口的煎饺名店","排队太久就外带，上车吃"]},
-  {id:"ktxback", time:"约 12:30", cat:"交通", cn:"KTX 回首尔", kr:"부산역", ll:[35.11555,129.04259], img:"ktx", real:true, nopin:true,
-   notes:["约 2.5 小时，大约 15:00 到首尔","提早 20–30 分钟进站，确认车票和月台"], warn:"周五的车很抢手，开卖就要订。", book:[["订 KTX","https://www.letskorail.com/"]]},
+ {n:4, date:"1/8（五）", title:"退房 · 松亭早午餐 · 回首尔", sub:"11 点退房，在 Airbnb 附近吃早午餐（4 家选 1 家），再坐车去釜山站，下午 4 点左右到首尔。", stops:[
+  {id:"brunchA", choice:"A", alt:true, time:"11:15 早午餐", cat:"法式早午餐", cn:"Les Planches", kr:"Les Planches 송정", ll:[35.1782,129.2002], approx:true, icon:"🇫🇷",
+   notes:["4 家选 1 家，让大家投票决定","就在松亭海边，主厨有米其林三星餐厅背景","早午餐拼盘：蛋卷、培根、薯块、起司、咖啡","⭐ 最推荐：海景 + 早午餐，很适合最后一天"]},
+  {id:"brunchB", choice:"B", alt:true, time:"11:15 早午餐", cat:"早午餐咖啡", cn:"Nibble", kr:"Nibble 송정", ll:[35.1790,129.1995], approx:true, icon:"🥞",
+   notes:["年轻人很爱的网红店","必点：玉米法式吐司","⭐ 适合拍照打卡"]},
+  {id:"brunchC", choice:"C", alt:true, time:"11:15 早午餐", cat:"巴西莓碗", cn:"Sunrise Bowl", kr:"Sunrise Bowl 송정", ll:[35.1775,129.2010], approx:true, icon:"🥣",
+   notes:["巴西莓碗、果昔","用旧冲浪板装饰，冲浪风格","比较清淡，1 月吃会有点冷"]},
+  {id:"brunchD", choice:"D", alt:true, time:"11:15 午餐", cat:"韩式", cn:"낙불집 송정본점", kr:"낙불집 송정본점", ll:[35.1797,129.1985], approx:true, icon:"🌶️",
+   notes:["松亭本地人的热门店","招牌：辣炒章鱼（낙지볶음）","想吃韩式、能吃辣就选这家"]},
+  {id:"ktxback", time:"约 13:30", cat:"交通", cn:"KTX 回首尔", kr:"부산역", ll:[35.11555,129.04259], img:"ktx", real:true, nopin:true,
+   notes:["12:30 吃完，叫 Kakao T 벤티 Venti 大型车去釜山站，约 50 分钟","约 2.5 小时，大约 16:00 到首尔","提早 20–30 分钟进站，确认车票和月台"], warn:"周五的车很抢手，开卖就要订。", book:[["订 KTX","https://www.letskorail.com/"]]},
  ]},
+
 ];
 
 const FOOD = [
@@ -288,7 +295,7 @@ const FOOD = [
  ["🍡 坚果糖饼","BIFF 广场","씨앗호떡","1/7 晚上","biff"],
  ["🐟 生鱼片","札嘎其市场","자갈치시장","1/7 晚餐 A","jagalchi"],
  ["🔥 烤盲鳗","成日家","성일집","1/7 晚餐 B","seongil"],
- ["🥟 煎饺","新发园","신발원","1/8 早午餐","sinbalwon"],
+ ["🍳 早午餐 · 4 选 1","Les Planches / Nibble / Sunrise Bowl / 낙불집","송정","1/8 早午餐","brunchA"],
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -320,7 +327,7 @@ DAYS.forEach(d => {
         ${s.num ? `<span class="num">${s.num}</span>` : ""}
         ${s.img ? `<span class="ptag">${s.closed ? "已停业" : s.real ? "实景" : "示意"}</span>` : ""}</div>
       <div class="body">
-        <div class="meta"><span class="time">${esc(s.time)}</span><span class="cat">${esc(s.cat)}</span>${s.alt ? '<span class="altlabel">备选</span>' : ""}${s.closed ? '<span class="closedlabel">已停业</span>' : ""}</div>
+        <div class="meta"><span class="time">${esc(s.time)}</span><span class="cat">${esc(s.cat)}</span>${s.alt ? `<span class="altlabel">${s.choice ? "4 选 1 · " + s.choice : "备选"}</span>` : ""}${s.closed ? '<span class="closedlabel">已停业</span>' : ""}</div>
         <h3>${esc(s.cn)}</h3>
         <div class="krrow"><span class="krname kr">${esc(s.kr)}</span><button class="copy" data-kr="${esc(s.kr)}">复制韩文</button></div>
         ${s.rating ? `<div class="rating">⭐ ${s.rating[0]} <span>· ${esc(s.rating[1])}</span></div>` : ""}
@@ -369,9 +376,9 @@ if (window.L) {
       if (s.nopin) return;
       const col = css.getPropertyValue(colors[d.n]).trim();
       const icon = L.divIcon({ className: "", iconSize: [28, 28], iconAnchor: [4, 28], popupAnchor: [10, -26],
-        html: `<div class="pin ${s.approx ? "approx" : ""}" style="background:${col};${s.alt ? "opacity:.7" : ""}"><b>${s.num || "备"}</b></div>` });
+        html: `<div class="pin ${s.approx ? "approx" : ""}" style="background:${col};${s.alt ? "opacity:.7" : ""}"><b>${s.num || s.choice || "备"}</b></div>` });
       L.marker(s.ll, { icon, title: s.cn }).bindPopup(
-        `<b>Day ${d.n} · ${s.num ? s.num + ". " : "备选 · "}${esc(s.cn)}</b><br><span class="kr">${esc(s.kr)}</span><br>${esc(s.time)}${s.approx ? " · 大概位置" : ""}<br><a href="#stop-${s.id}">看这一站 ↓</a> · <a href="${naver(s.kr)}" target="_blank" rel="noopener">Naver ↗</a>`
+        `<b>Day ${d.n} · ${s.num ? s.num + ". " : s.choice ? "4 选 1 · " + s.choice + " · " : "备选 · "}${esc(s.cn)}</b><br><span class="kr">${esc(s.kr)}</span><br>${esc(s.time)}${s.approx ? " · 大概位置" : ""}<br><a href="#stop-${s.id}">看这一站 ↓</a> · <a href="${naver(s.kr)}" target="_blank" rel="noopener">Naver ↗</a>`
       ).addTo(groups[d.n]);
       if (!s.alt) lines.push(s.ll);
     });
