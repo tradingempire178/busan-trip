@@ -49,12 +49,12 @@ nav.days a.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 nav.days a .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 
 section{scroll-margin-top:calc(var(--navh) + 6px)}
-.sec-title{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh));z-index:900;display:flex;align-items:baseline;gap:10px;margin:36px -16px 22px;padding:10px 16px;background:var(--ink);color:var(--bg)}
+.sec-title{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh));z-index:900;display:flex;align-items:center;gap:10px;min-height:52px;margin:36px -16px 22px;padding:8px 16px;background:var(--ink);color:var(--bg)}
 .sec-title h2{color:inherit}
-.sec-title .tag{color:inherit;opacity:.75}
+.sec-title .tag{color:inherit;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 #book .sec-title{margin-top:14px}
 #credits .sec-title{position:static;background:none;color:var(--ink);margin:36px 0 12px;padding:0}
-.sec-title h2{font-size:18px;font-weight:800}
+.sec-title h2{font-size:18px;font-weight:800;line-height:1.2;white-space:nowrap}
 .sec-title .tag{font-size:12px;color:var(--muted);font-weight:600}
 
 /* booking */
@@ -95,9 +95,9 @@ section{scroll-margin-top:calc(var(--navh) + 6px)}
 
 /* day */
 section.day{margin:44px -16px 0;padding:0 16px 36px;background:color-mix(in srgb,var(--dc) 9%,var(--bg))}
-.daybar{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh));z-index:900;margin-inline:-16px;padding:10px 16px;background:var(--dc);color:var(--on-day);display:flex;align-items:baseline;gap:10px;min-width:0}
-.daybar b{font-family:var(--font-display);font-weight:400;font-size:24px;line-height:1}
-.daybar span{font-weight:800;font-size:15px;white-space:nowrap}
+.daybar{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh));z-index:900;margin-inline:-16px;min-height:52px;padding:8px 16px;background:var(--dc);color:var(--on-day);display:flex;align-items:center;gap:10px;min-width:0}
+.daybar b{font-family:var(--font-display);font-weight:400;font-size:24px;line-height:1;white-space:nowrap;flex:none}
+.daybar span{font-weight:800;font-size:15px;white-space:nowrap;flex:none}
 .daybar em{font-style:normal;font-size:13px;font-weight:600;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 @media (min-width:792px){section.day{border-radius:24px;overflow:clip}.daybar{border-radius:0}}
 .day-head{margin-block:24px 16px;display:grid;gap:6px}
