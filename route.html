@@ -71,6 +71,19 @@ nav.days a:first-child{background:var(--ink);color:var(--bg);border-color:var(--
 .stop.key .name{font-weight:800}
 .stop .how{font-size:13px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
 
+/* route "lights up" one stop at a time; only runs when JS adds .anim, so the page reads fine without it */
+[hidden]{display:none!important}
+.replay{margin-left:auto;align-self:center;font:inherit;font-size:12.5px;font-weight:700;color:var(--dc);background:var(--surface);border:1px solid var(--line);border-radius:999px;min-height:34px;padding:4px 12px;cursor:pointer}
+.replay:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.tl.anim li .what,.tl.anim li time{transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1)}
+.tl.anim li .rail::before{transform-origin:50% 0;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .3s}
+.tl.anim li .rail i{transition:background-color .35s,border-color .35s,transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s}
+.tl.anim li:not(.lit) .what,.tl.anim li:not(.lit) time{opacity:.3;transform:translateX(-4px)}
+.tl.anim li:not(.lit) .rail::before{transform:scaleY(0)}
+.tl.anim li:not(.lit) .rail i{border-color:var(--line);background:var(--surface);box-shadow:none;transform:scale(.8)}
+.tl.anim li.lit .rail i{animation:pop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.tl.anim li .what,.tl.anim li time,.tl.anim li .rail::before,.tl.anim li .rail i{transition:none;animation:none}}
 .note{display:grid;gap:4px;padding:12px 14px;border-radius:12px;background:var(--warn-bg);color:var(--warn-ink);font-size:13.5px}
 .note b{font-size:13px}
 .btn{justify-self:start}
@@ -92,7 +105,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day1" class="day" style="--dc:var(--d1)">
     <header class="dhead">
       <div class="dn">DAY 1</div>
-      <div class="dt"><h2 class="date">1/5（二）</h2></div>
+      <div class="dt"><h2 class="date">1/5（二）</h2></div><button class="replay" type="button" data-day="1">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>12:20</time><span class="rail"><i></i></span><div class="what"><span class="name">✈️ 落地仁川机场，入境、拿行李</span><span class="how">约 1 小时</span></div></li>
@@ -108,7 +121,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day2" class="day" style="--dc:var(--d2)">
     <header class="dhead">
       <div class="dn">DAY 2</div>
-      <div class="dt"><h2 class="date">1/6（三）</h2></div>
+      <div class="dt"><h2 class="date">1/6（三）</h2></div><button class="replay" type="button" data-day="2">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>09:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span><span class="how">🚕 出租车 · 4.6 km · 约 12 分钟</span></div></li>
@@ -134,7 +147,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day3" class="day" style="--dc:var(--d3)">
     <header class="dhead">
       <div class="dn">DAY 3</div>
-      <div class="dt"><h2 class="date">1/7（四）</h2></div>
+      <div class="dt"><h2 class="date">1/7（四）</h2></div><button class="replay" type="button" data-day="3">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>10:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span><span class="how">🚕 出租车 · 17.5 km · 约 40 分钟</span></div></li>
@@ -156,7 +169,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day4" class="day" style="--dc:var(--d4)">
     <header class="dhead">
       <div class="dn">DAY 4</div>
-      <div class="dt"><h2 class="date">1/8（五）</h2></div>
+      <div class="dt"><h2 class="date">1/8（五）</h2></div><button class="replay" type="button" data-day="4">▶ 再播一次</button>
     </header>
     <ol class="tl">
       <li class="stop"><time>11:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🧳 退房</span></div></li>
@@ -170,5 +183,29 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   </section>
   <footer>距离是按地图估算的路程，车程看当天路况；出租车车资是大概的价格。</footer>
 </div>
+<script>
+(() => {
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lists = [...document.querySelectorAll(".tl")];
+  const timers = new Map();
+  const play = tl => {
+    (timers.get(tl) || []).forEach(clearTimeout);
+    const items = [...tl.children];
+    items.forEach(li => li.classList.remove("lit"));
+    const step = Math.max(110, Math.min(220, 2600 / items.length));
+    timers.set(tl, items.map((li, i) => setTimeout(() => li.classList.add("lit"), 120 + i * step)));
+  };
+  if (still || !("IntersectionObserver" in window)) { document.querySelectorAll(".replay").forEach(b => b.hidden = true); return; }
+  lists.forEach(tl => tl.classList.add("anim"));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { play(e.target); io.unobserve(e.target); }
+  }), { threshold: 0.2 });
+  lists.forEach(tl => io.observe(tl));
+  document.querySelectorAll(".replay").forEach(b => b.addEventListener("click", () => {
+    const tl = b.closest(".day").querySelector(".tl");
+    io.unobserve(tl); play(tl);
+  }));
+})();
+</script>
 </body>
 </html>
