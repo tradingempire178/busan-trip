@@ -489,13 +489,14 @@ if (window.L) {
   L.marker(HOME, { icon: L.divIcon({ className: "", iconSize: [32, 32], iconAnchor: [16, 16], html: '<div class="home">🏠</div>' }), title: "Airbnb", zIndexOffset: 1000 })
     .bindPopup('<b>🏠 Airbnb</b><br><span class="kr">송정광어골로 29, 4F</span><br><a href="' + naver("송정광어골로 29") + '" target="_blank" rel="noopener">Naver ↗</a>')
     .bindTooltip("Airbnb", { permanent: true, direction: "left", offset: [-16, 0], className: "maplabel left" }).addTo(map);
-  L.marker(STATION, { icon: L.divIcon({ className: "", iconSize: [32, 32], iconAnchor: [16, 16], html: '<div class="home">🚉</div>' }), title: "釜山站", zIndexOffset: 1000 })
+  const stationMarker = L.marker(STATION, { icon: L.divIcon({ className: "", iconSize: [32, 32], iconAnchor: [16, 16], html: '<div class="home">🚉</div>' }), title: "釜山站", zIndexOffset: 1000 })
     .bindPopup('<b>🚉 釜山站</b><br><span class="kr">부산역</span><br>KTX 在这里上下车<br><a href="' + naver("부산역") + '" target="_blank" rel="noopener">Naver ↗</a>')
-    .bindTooltip("釜山站", { permanent: true, direction: "right", offset: [16, 0], className: "maplabel" }).addTo(map);
+    .bindTooltip("釜山站", { permanent: true, direction: "right", offset: [16, 0], className: "maplabel" });
   const all = DAYS.flatMap(d => d.stops.filter(s => !s.nopin).map(s => s.ll)).concat([HOME, STATION]);
   const show = f => {
     Object.entries(groups).forEach(([n, g]) => (f === "all" || f === n) ? g.addTo(map) : map.removeLayer(g));
     Object.entries(legLabels).forEach(([n, g]) => f === n ? g.addTo(map) : map.removeLayer(g));
+    f === "3" ? map.removeLayer(stationMarker) : stationMarker.addTo(map);
     const pts = f === "all" ? all : DAYS[+f - 1].stops.filter(s => !s.nopin).map(s => s.ll).concat([HOME], DAY_LINES[f] ? [STATION] : []);
     map.fitBounds(pts, f === "all" ? { padding: [24, 24], maxZoom: 14 } : { paddingTopLeft: [70, 40], paddingBottomRight: [70, 40], maxZoom: 14 });
     if (f === "all" && map.getZoom() < 12) map.setZoom(12, { animate: false });
