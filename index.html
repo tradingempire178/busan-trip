@@ -16,16 +16,16 @@
   --d1:#d4561c; --d2:#0f7c96; --d3:#c42a6c; --d4:#4f7f12;
   --font-display:"Bagel Fat One","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
   --font-body:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  --radius:14px;
+  --radius:14px; --on-day:#ffffff; --navh:53px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0c1820; --surface:#14242f; --ink:#e4edf1; --muted:#9db0bd; --line:#24394a;
   --accent:#ff6e55; --accent-ink:#1a0d09; --sea:#4fc0d8; --warn-bg:#33270f; --warn-ink:#ffd58a;
-  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; color-scheme:dark}}
+  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; --on-day:#0c1820; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0c1820; --surface:#14242f; --ink:#e4edf1; --muted:#9db0bd; --line:#24394a;
   --accent:#ff6e55; --accent-ink:#1a0d09; --sea:#4fc0d8; --warn-bg:#33270f; --warn-ink:#ffd58a;
-  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; color-scheme:dark}
+  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; --on-day:#0c1820; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 .wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
@@ -45,11 +45,15 @@ h1,h2,h3{margin:0;text-wrap:balance}
 nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
 nav.days::-webkit-scrollbar{display:none}
 nav.days a{flex:none;display:inline-flex;align-items:center;min-height:36px;text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+nav.days a.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 nav.days a .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 
-section{scroll-margin-top:60px}
-.sec-title{display:flex;align-items:baseline;gap:10px;margin-block:30px 12px}
-.sec-title h2{font-size:22px;font-weight:800}
+section{scroll-margin-top:calc(var(--navh) + 6px)}
+.sec-title{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh));z-index:900;display:flex;align-items:baseline;gap:10px;margin:36px -16px 14px;padding:10px 16px;background:var(--ink);color:var(--bg)}
+.sec-title h2{color:inherit}
+.sec-title .tag{color:inherit;opacity:.75}
+#credits .sec-title{position:static;background:none;color:var(--ink);margin:36px 0 12px;padding:0}
+.sec-title h2{font-size:18px;font-weight:800}
 .sec-title .tag{font-size:12px;color:var(--muted);font-weight:600}
 
 /* booking */
@@ -89,8 +93,13 @@ section{scroll-margin-top:60px}
 :root[data-theme="dark"] .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 
 /* day */
-.day-head{margin-block:40px 14px;display:grid;gap:4px;padding-top:14px;border-top:1px solid var(--line)}
-.day-head .d{font-family:var(--font-display);font-size:30px;line-height:1;color:var(--dc)}
+section.day{margin:40px -16px 0;padding:0 16px 28px;background:color-mix(in srgb,var(--dc) 9%,var(--bg))}
+.daybar{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh));z-index:900;margin-inline:-16px;padding:10px 16px;background:var(--dc);color:var(--on-day);display:flex;align-items:baseline;gap:10px;min-width:0}
+.daybar b{font-family:var(--font-display);font-weight:400;font-size:24px;line-height:1}
+.daybar span{font-weight:800;font-size:15px;white-space:nowrap}
+.daybar em{font-style:normal;font-size:13px;font-weight:600;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+@media (min-width:792px){section.day{border-radius:24px;overflow:clip}.daybar{border-radius:0}}
+.day-head{margin-block:18px 14px;display:grid;gap:4px}
 .day-head h2{font-size:20px;font-weight:800;word-break:keep-all}
 .day-head p{margin:0;color:var(--muted);font-size:14px}
 .stops{display:grid;gap:14px}
@@ -175,12 +184,12 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
   </nav>
 
   <section id="book">
-    <div class="sec-title"><h2>出发前要订的</h2><span class="tag">这 4 项要提前订</span></div>
+    <div class="sec-title"><h2>📝 出发前要订的</h2><span class="tag">这 4 项要提前订</span></div>
     <div class="book" id="booklist"></div>
   </section>
 
   <section id="mapsec">
-    <div class="sec-title"><h2>行程地图</h2><span class="tag">点图钉看是哪一站</span></div>
+    <div class="sec-title"><h2>🗺️ 行程地图</h2><span class="tag">点图钉看是哪一站</span></div>
     <div class="chips" role="group" aria-label="按天筛选">
       <button class="chip" data-f="all" aria-pressed="true">全部</button>
       <button class="chip" data-f="1">Day 1</button>
@@ -195,7 +204,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
   <div id="days"></div>
 
   <section id="food">
-    <div class="sec-title"><h2>釜山必吃美食总清单</h2></div>
+    <div class="sec-title"><h2>🍽️ 釜山必吃美食总清单</h2></div>
     <div class="tbl"><table>
       <thead><tr><th>类别</th><th>餐厅 / 美食</th><th>韩文</th><th>安排</th></tr></thead>
       <tbody id="foodrows"></tbody>
@@ -330,8 +339,9 @@ const dayColor = n => `var(--d${n})`;
 let html = "";
 DAYS.forEach(d => {
   let k = 0;
-  html += `<section id="day${d.n}" style="--dc:${dayColor(d.n)}">
-    <div class="day-head"><div class="d">DAY ${d.n}</div><h2>${esc(d.date)} ${esc(d.title)}</h2><p>${esc(d.sub)}</p></div>${ROUTE_DAYS.includes(d.n) ? `<a class="btn routebtn" href="route.html#day${d.n}">🚕 看今天的路线、距离和车程 →</a>` : ""}<div class="stops">`;
+  html += `<section id="day${d.n}" class="day" style="--dc:${dayColor(d.n)}">
+    <div class="daybar"><b>DAY ${d.n}</b><span>${esc(d.date)}</span><em>${esc(d.title)}</em></div>
+    <div class="day-head"><h2>${esc(d.title)}</h2><p>${esc(d.sub)}</p></div>${ROUTE_DAYS.includes(d.n) ? `<a class="btn routebtn" href="route.html#day${d.n}">🚕 看今天的路线、距离和车程 →</a>` : ""}<div class="stops">`;
   d.stops.forEach(s => {
     if (!s.alt && !s.nopin) s.num = ++k;
     if (s.alt) s.num = null;
@@ -359,6 +369,25 @@ DAYS.forEach(d => {
   html += `</div></section>`;
 });
 document.getElementById("days").innerHTML = html;
+
+// keep the sticky bars under the nav, and highlight where the reader is
+const navEl = document.querySelector("nav.days");
+const setNavH = () => document.documentElement.style.setProperty("--navh", navEl.offsetHeight + "px");
+setNavH(); addEventListener("resize", setNavH);
+const navLinks = [...navEl.querySelectorAll('a[href^="#"]')];
+const spy = () => {
+  const y = navEl.getBoundingClientRect().bottom + 60;
+  let cur = null;
+  if (scrollY > 40) navLinks.forEach(a => { const t = document.querySelector(a.getAttribute("href")); if (t && t.getBoundingClientRect().top <= y) cur = a; });
+  navLinks.forEach(a => a.classList.toggle("active", a === cur));
+  if (cur && navEl.scrollWidth > navEl.clientWidth) {
+    const want = cur.offsetLeft - (navEl.clientWidth - cur.offsetWidth) / 2;
+    if (Math.abs(navEl.scrollLeft - want) > 4) navEl.scrollTo({ left: want, behavior: "smooth" });
+  }
+};
+let spyQ = false;
+addEventListener("scroll", () => { if (!spyQ) { spyQ = true; requestAnimationFrame(() => { spy(); spyQ = false; }); } }, { passive: true });
+spy();
 
 const byId = {};
 DAYS.forEach(d => d.stops.forEach(s => byId[s.id] = s));
