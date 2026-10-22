@@ -221,7 +221,7 @@ const BOOK = [
 
 // approx:true = 大概位置
 const HOME = [35.17835,129.19697];
-const ROUTE_DAYS = [1, 2, 3];
+const ROUTE_DAYS = [1, 2, 3, 4];
 const DAYS = [
  {n:1, date:"1/5（二）", title:"抵达釜山 · 西面汤饭 · 回松亭", sub:"中午落地仁川，坐 KTX 到釜山，吃碗热汤饭就回 Airbnb 休息。", stops:[
   {id:"arrive", time:"12:20 → 约 18:00", cat:"交通", cn:"仁川机场 → KTX → 釜山站", kr:"부산역", ll:[35.11555,129.04259], img:"ktx", real:true,
@@ -275,15 +275,9 @@ const DAYS = [
   {id:"seongil", hours:"11:00–23:00", alt:true, time:"晚餐 B", cat:"餐厅", cn:"成日家烤盲鳗", kr:"성일집", ll:[35.0958,129.0368], approx:true, img:"hagfish", real:true,
    notes:["盐烤（소금구이）或辣酱烤（양념구이）","网上资料：辣酱烤约 18,000 韩元"]},
  ]},
- {n:4, date:"1/8（五）", title:"退房 · 松亭早午餐 · 回首尔", sub:"11 点退房，在 Airbnb 附近吃早午餐（4 家选 1 家），再坐车去釜山站，下午 4 点左右到首尔。", stops:[
-  {id:"brunchA", choice:"A", alt:true, time:"11:15 早午餐", cat:"法式早午餐", cn:"Les Planches", kr:"Les Planches 송정", ll:[35.1782,129.2002], approx:true, icon:"🇫🇷",
-   notes:["4 家选 1 家，让大家投票决定","就在松亭海边，主厨有米其林三星餐厅背景","早午餐拼盘：蛋卷、培根、薯块、起司、咖啡","⭐ 最推荐：海景 + 早午餐，很适合最后一天"]},
-  {id:"brunchB", choice:"B", alt:true, time:"11:15 早午餐", cat:"早午餐咖啡", cn:"Nibble", kr:"Nibble 송정", ll:[35.1790,129.1995], approx:true, icon:"🥞",
-   notes:["年轻人很爱的网红店","必点：玉米法式吐司","⭐ 适合拍照打卡"]},
-  {id:"brunchC", choice:"C", alt:true, time:"11:15 早午餐", cat:"巴西莓碗", cn:"Sunrise Bowl", kr:"Sunrise Bowl 송정", ll:[35.1775,129.2010], approx:true, icon:"🥣",
-   notes:["巴西莓碗、果昔","用旧冲浪板装饰，冲浪风格","比较清淡，1 月吃会有点冷"]},
-  {id:"brunchD", choice:"D", alt:true, time:"11:15 午餐", cat:"韩式", cn:"낙불집 송정본점", kr:"낙불집 송정본점", ll:[35.1797,129.1985], approx:true, icon:"🌶️",
-   notes:["松亭本地人的热门店","招牌：辣炒章鱼（낙지볶음）","想吃韩式、能吃辣就选这家"]},
+ {n:4, date:"1/8（五）", title:"退房 · 早午餐 · 回首尔", sub:"11 点退房，在 Airbnb 附近自己找早午餐，再坐车去釜山站，下午 4 点左右到首尔。", stops:[
+  {id:"checkout", time:"11:00", cat:"退房", cn:"退房 · 在松亭附近吃早午餐", kr:"송정해수욕장", ll:[35.17835,129.19697], nopin:true, img:"airbnb", real:true,
+   notes:["11:00 退房","早午餐到了再自己找，松亭海边有很多咖啡馆和餐厅","12:30 左右叫 Kakao T 벤티 Venti 大型车去釜山站"], warn:"带着行李吃饭的话，先问店家能不能放行李；或问 Airbnb 能不能让你们晚一点拿行李。"},
   {id:"ktxback", time:"约 13:30", cat:"交通", cn:"KTX 回首尔", kr:"부산역", ll:[35.11555,129.04259], img:"ktx", real:true, nopin:true,
    notes:["12:30 吃完，叫 Kakao T 벤티 Venti 大型车去釜山站，约 50 分钟","约 2.5 小时，大约 16:00 到首尔","提早 20–30 分钟进站，确认车票和月台"], warn:"周五的车很抢手，开卖就要订。", book:[["订 KTX","https://www.letskorail.com/"]]},
  ]},
@@ -306,7 +300,6 @@ const FOOD = [
  ["🍡 坚果糖饼","BIFF 广场","씨앗호떡","1/7 晚上","biff"],
  ["🐟 生鱼片","札嘎其市场","자갈치시장","1/7 晚餐 A","jagalchi"],
  ["🔥 烤盲鳗","成日家","성일집","1/7 晚餐 B","seongil"],
- ["🍳 早午餐 · 4 选 1","Les Planches / Nibble / Sunrise Bowl / 낙불집","송정","1/8 早午餐","brunchA"],
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
