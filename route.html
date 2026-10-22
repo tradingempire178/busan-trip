@@ -50,16 +50,16 @@ nav.days a,.btn{flex:none;display:inline-flex;align-items:center;min-height:38px
 nav.days a .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px}
 nav.days a:first-child{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
-.day{margin-top:36px;display:grid;gap:14px}
-.dhead{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:10px;align-items:end;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.day{margin-top:44px;display:grid;gap:16px}
+.dhead{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .dn{font-family:var(--font-display);font-size:clamp(40px,11vw,56px);line-height:.85;color:var(--dc)}
 .dt{display:grid;gap:2px;min-width:0}
-.date{font-size:13px;font-weight:700;color:var(--dc)}
+.date{font-size:20px;font-weight:800;color:var(--ink)}
 .dhead h2{font-size:18px;font-weight:800;line-height:1.35}
 .stats{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px}
 .stats span{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-variant-numeric:tabular-nums}
 
-.tl{list-style:none;margin:0;padding:14px 14px 10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.tl{list-style:none;margin:0;padding:22px 16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
 .tl li{display:grid;grid-template-columns:3.4rem 22px minmax(0,1fr);column-gap:10px;align-items:center}
 .rail{grid-column:2;align-self:stretch;position:relative;display:block}
 .rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;background:var(--dc);opacity:.35;border-radius:2px}
@@ -71,14 +71,14 @@ nav.days a:first-child{background:var(--ink);color:var(--bg);border-color:var(--
 .tl li:last-child .rail::before{bottom:50%}
 .stop .rail i{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:var(--surface);border:3px solid var(--dc);z-index:1}
 .stop.key .rail i{width:17px;height:17px;margin:-8.5px 0 0 -8.5px;background:var(--dc);box-shadow:0 0 0 4px color-mix(in srgb,var(--dc) 18%,transparent)}
-.stop time{grid-column:1;font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;color:var(--dc);text-align:right}
-.stop .what{grid-column:3;padding-block:7px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
-.stop .name{font-size:15px;font-weight:600;line-height:1.4}
-.stop.key .name{font-weight:800;font-size:16px}
+.stop time{grid-column:1;font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;color:var(--dc);text-align:right}
+.stop .what{grid-column:3;padding-block:12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.stop .name{font-size:16px;font-weight:600;line-height:1.45}
+.stop.key .name{font-weight:800;font-size:17px}
 .stop .dur{font-size:12px;font-weight:600;color:var(--muted)}
-.leg{min-height:30px}
-.legchip{grid-column:3;justify-self:start;font-size:12.5px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;padding:2px 9px;border-radius:999px;background:var(--bg);margin-block:2px}
-.leg.stay{min-height:12px}
+.leg{min-height:44px}
+.legchip{grid-column:3;justify-self:start;font-size:13px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;padding:4px 11px;border-radius:999px;background:var(--bg);margin-block:8px}
+.leg.stay{min-height:22px}
 
 .note{display:grid;gap:4px;padding:12px 14px;border-radius:12px;background:var(--warn-bg);color:var(--warn-ink);font-size:13.5px}
 .note b{font-size:13px}
@@ -101,8 +101,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day1" class="day" style="--dc:var(--d1)">
     <header class="dhead">
       <div class="dn">DAY 1</div>
-      <div class="dt"><p class="date">1/5（二）</p><h2>抵达釜山 · 西面汤饭 · 回松亭</h2></div>
-      <div class="stats"><span>🕘 12:20 开始 · 19:45 最后一站</span><span>🚕 出租车约 24 km</span><span>🚄 KTX 约 2.5 小时</span></div>
+      <div class="dt"><h2 class="date">1/5（二）</h2></div>
     </header>
     <ol class="tl">
       <li class="stop"><time>12:20</time><span class="rail"><i></i></span><div class="what"><span class="name">✈️ 落地仁川机场，入境、拿行李</span><span class="dur">约 1 小时</span></div></li>
@@ -122,8 +121,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day2" class="day" style="--dc:var(--d2)">
     <header class="dhead">
       <div class="dn">DAY 2</div>
-      <div class="dt"><p class="date">1/6（三）</p><h2>海云台 · 青沙浦咖啡 · 日落天空胶囊 · 游艇 · 广安里</h2></div>
-      <div class="stats"><span>🕘 09:00 开始 · 22:00 最后一站</span><span>🚕 出租车约 29 km</span><span>🚶 走路约 2.9 km</span></div>
+      <div class="dt"><h2 class="date">1/6（三）</h2></div>
     </header>
     <ol class="tl">
       <li class="stop"><time>09:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span></div></li>
@@ -163,8 +161,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day3" class="day" style="--dc:var(--d3)">
     <header class="dhead">
       <div class="dn">DAY 3</div>
-      <div class="dt"><p class="date">1/7（四）</p><h2>西面 · 松岛缆车 · 影岛日落 · 南浦</h2></div>
-      <div class="stats"><span>🕘 10:00 开始 · 20:00 最后一站</span><span>🚕 出租车约 72 km</span><span>🚶 走路约 2.1 km</span></div>
+      <div class="dt"><h2 class="date">1/7（四）</h2></div>
     </header>
     <ol class="tl">
       <li class="stop"><time>10:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🏠 Airbnb 出发</span></div></li>
@@ -196,8 +193,7 @@ footer{margin-top:36px;font-size:12px;color:var(--muted)}
   <section id="day4" class="day" style="--dc:var(--d4)">
     <header class="dhead">
       <div class="dn">DAY 4</div>
-      <div class="dt"><p class="date">1/8（五）</p><h2>退房 · 早午餐 · 回首尔</h2></div>
-      <div class="stats"><span>🕘 11:00 开始 · 16:00 最后一站</span><span>🚕 出租车约 21 km</span><span>🚄 KTX 约 2.5 小时</span></div>
+      <div class="dt"><h2 class="date">1/8（五）</h2></div>
     </header>
     <ol class="tl">
       <li class="stop"><time>11:00</time><span class="rail"><i></i></span><div class="what"><span class="name">🧳 退房</span></div></li>
