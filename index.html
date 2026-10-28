@@ -266,16 +266,18 @@ const DAY_LINES = {
 };
 const ROUTE_DAYS = [1, 2, 3, 4];
 const DAYS = [
- {n:1, date:"1/5（二）", title:"抵达釜山 · 西面汤饭 · 回松亭", sub:"中午落地仁川，坐 KTX 到釜山，吃碗热汤饭就回 Airbnb 休息。", stops:[
+ {n:1, date:"1/5（二）", title:"抵达釜山 · 西面汤饭 · 大排档 · 回松亭", sub:"中午落地仁川，坐 KTX 到釜山，在西面吃热汤饭、逛大排档，再回 Airbnb 休息。", stops:[
   {id:"arrive", nopin:true, time:"12:20 → 约 18:00", cat:"交通", cn:"仁川机场 → KTX → 釜山站", kr:"부산역", ll:[35.11555,129.04259], img:"ktx", real:true,
    notes:["入境、拿行李约 1 小时，AREX 直达车到首尔站约 45 分钟","KTX 建议订 15:00–15:30 从首尔站出发，约 2.5 小时","预计 17:45–18:15 到釜山站"],
    warn:"4 个人加 4 个大行李箱，一般出租车塞不下：用 Kakao T 叫「벤티 Venti」大型车，或叫两台。", book:[["订 KTX","https://www.letskorail.com/"]]},
   {id:"songjeong", hours:"24 小时，全年无休", time:"约 18:40 晚餐", cat:"老字号", cn:"松亭三代汤饭", kr:"송정3대국밥", ll:[35.15574,129.05855], img:"gukbap", real:true,
-   rating:["4.8","Trip.com · 127 条评论"], notes:["1946 年开业，在西面市场的猪肉汤饭巷","必点：猪肉汤饭（돼지국밥）、水煮猪肉拼盘（수육）","从釜山站坐车约 15–20 分钟","吃完直接坐车回松亭 Airbnb，约 40 分钟"]},
+   rating:["4.8","Trip.com · 127 条评论"], notes:["1946 年开业，在西面市场的猪肉汤饭巷","必点：猪肉汤饭（돼지국밥）、水煮猪肉拼盘（수육）","从釜山站坐车约 15–20 分钟","吃完走去旁边的西面大排档街，约 5 分钟"]},
   {id:"ssangdungi", hours:"09:00–22:00", alt:true, time:"备选", cat:"餐厅", cn:"双胞胎猪肉汤饭", kr:"쌍둥이돼지국밥", ll:[35.13364,129.09214], img:"gukbap2", real:true,
    notes:["在南区大渊洞，也是很有名的汤饭店","和松亭三代是同一种料理，二选一就好"]},
-  {id:"airbnb", time:"约 20:30 入住", cat:"住宿", cn:"我们的 Airbnb（松亭）", kr:"부산 해운대구 송정광어골로 29, 4층", ll:[35.17835,129.19697], nopin:true, img:"airbnb", real:true,
-   notes:["英文地址：29 Songjeonggwangeogol-ro 4F, Haeundae-gu, Busan 48073","在松亭海滩附近，地图上的 🏠 就是这里","从西面坐出租车约 40 分钟","坐出租车时，按「复制韩文」把韩文地址给司机看"]},
+  {id:"pocha", xhs:"https://www.xiaohongshu.com/explore/6adb4fa0000000001401e179?xsec_token=CBzWPePOOeAqei0Xgm3oQjFhtFa-nIA09Q_PuiJNOCA4k=&xsec_source=app_share", hours:"傍晚 17:00 后陆续开，各摊不同", time:"19:45", cat:"夜市", cn:"西面大排档街", kr:"서면 포장마차거리", ll:[35.15700,129.05560], approx:true, icon:"🏮",
+   notes:["在西面乐天百货釜山本店后面的巷子（부산진구 가야대로 772 一带）","路边摊坐着吃宵夜、喝一杯，感受本地人的夜生活","多数只收现金或转账，记得带韩元现金"], warn:"带着 4 个大行李箱，先问摊位能不能放在旁边；坐 Venti 大型车的话，可以请司机在乐天百货门口等或另外叫车。"},
+  {id:"airbnb", time:"约 21:30 入住", cat:"住宿", cn:"我们的 Airbnb（松亭）", kr:"부산 해운대구 송정광어골로 29, 4층", ll:[35.17835,129.19697], nopin:true, img:"airbnb", real:true,
+   notes:["英文地址：29 Songjeonggwangeogol-ro 4F, Haeundae-gu, Busan 48073","在松亭海滩附近，地图上的 🏠 就是这里","从西面大排档坐出租车约 40 分钟","坐出租车时，按「复制韩文」把韩文地址给司机看"]},
  ]},
  {n:2, date:"1/6（三）", title:"海云台 · 青沙浦咖啡 · 日落天空胶囊 · 游艇 · 广安里", sub:"上午海云台吃喝、买伴手礼，下午在青沙浦喝咖啡、走展望台，坐天空胶囊看日落，晚上游艇和广安里夜景。", stops:[
   {id:"geumsu", hours:"24 小时", time:"09:30 早餐", cat:"老字号", cn:"锦水河豚汤 海云台本店", kr:"금수복국 해운대본점", ll:[35.16242,129.16448], img:"bokguk", real:true,
@@ -302,25 +304,31 @@ const DAYS = [
   {id:"gwangalli", xhs:"http://xhslink.com/o/1fgZ5pssj4U", hours:"海边全天开放，广安大桥晚上亮灯", time:"21:00", cat:"景点", cn:"广安里海边夜景散步", kr:"광안리해수욕장", ll:[35.1532,129.1186], img:"gwangalli", real:true,
    notes:["下船后就在广安里海滩南边，沿着海边走过去，约 10 分钟","沿着海边走，看亮灯的广安大桥","海边有很多酒吧、咖啡馆、便利店","22:00 左右回 Airbnb，约 20–25 分钟（10 km）"]},
  ]},
- {n:3, date:"1/7（四）", title:"西面 · 松岛缆车 · 影岛日落 · 南浦", sub:"往西走：西面吃面和刨冰，下午松岛和影岛，在白浅滩看日落，晚上南浦吃市场。", stops:[
+ {n:3, date:"1/7（四）", title:"西面 · 松岛 · 影岛滑索 · 白浅滩日落 · 南浦夜市", sub:"往西走：西面吃面和刨冰，下午松岛缆车、影岛滑索，在白浅滩看日落，晚上逛南浦洞、吃市场和夜市。", stops:[
   {id:"chunha", xhs:"http://xhslink.com/o/1mMhnzy2t2J", hours:"网上查不到西面本店的时间，出发前用 Naver 确认", time:"11:00 早午餐", cat:"餐厅", cn:"春夏秋冬冷小麦面 西面本店", kr:"춘하추동밀면 서면본점", ll:[35.1579,129.0569], approx:true, img:"milmyeon", real:true,
    notes:["10:00 从 Airbnb 出发，约 45 分钟","冷汤小麦面（물밀면）、辣拌小麦面（비빔밀면）","天冷可以问有没有热汤的 온밀면"]},
-  {id:"jeonpo", xhs:"http://xhslink.com/o/9h5GSlRhrNz", hours:"各店不同，多数中午开门", time:"12:00", cat:"咖啡", cn:"田浦咖啡街", kr:"전포카페거리", ll:[35.1556,129.0647], approx:true, img:"jeonpo", real:true,
+  {id:"jeonpo", xhs:"http://xhslink.com/o/9h5GSlRhrNz", hours:"各店不同，多数中午开门", time:"11:45", cat:"咖啡", cn:"田浦咖啡街", kr:"전포카페거리", ll:[35.1556,129.0647], approx:true, img:"jeonpo", real:true,
    notes:["从西面走路就到","整条街的特色咖啡馆、小店"]},
-  {id:"nok", xhs:"http://xhslink.com/o/39Nz8iBJs2C", hours:"网上查不到，出发前用 Naver 确认", time:"12:15", cat:"甜品", cn:"녹아들다 녹카페 · 抹茶芒果冰", kr:"녹아들다 녹카페", ll:[35.15912,129.06382], img:"bingsu", real:true,
-   notes:["地址：부산 부산진구 서전로37번길 18 1층","招牌：抹茶芒果冰（말차 망고빙수），4 个人先点一份分享","13:15 坐出租车去松岛，约 30 分钟"]},
-  {id:"songdo", xhs:"http://xhslink.com/o/IP1tzxC8tb", hours:"09:00 开始；售票到关门前 30 分钟，结束时间看季节和天气", time:"13:45", cat:"景点", cn:"松岛海上缆车", kr:"송도해상케이블카", ll:[35.06892,129.02202], img:"songdo", real:true,
-   notes:["从海面上飞过去，有透明地板的车厢","预留 1 小时多，看排队情况"], book:[["官网","https://www.busanaircruise.co.kr/"]]},
-  {id:"haenyeo", xhs:"http://xhslink.com/o/9HC7UryQROf", hours:"网上查不到，出发前用 Naver 确认（看天气营业）", time:"15:10 点心", cat:"海鲜", cn:"影岛海女村", kr:"영도 해녀촌", ll:[35.0700,129.0640], approx:true, img:"urchin", real:true,
+  {id:"nok", xhs:"http://xhslink.com/o/39Nz8iBJs2C", hours:"网上查不到，出发前用 Naver 确认", time:"12:00", cat:"甜品", cn:"녹아들다 녹카페 · 抹茶芒果冰", kr:"녹아들다 녹카페", ll:[35.15912,129.06382], img:"bingsu", real:true,
+   notes:["地址：부산 부산진구 서전로37번길 18 1층","招牌：抹茶芒果冰（말차 망고빙수），4 个人先点一份分享","打卡就走，12:30 坐出租车去松岛，约 30 分钟"]},
+  {id:"songdo", xhs:"http://xhslink.com/o/IP1tzxC8tb", hours:"09:00 开始；售票到关门前 30 分钟，结束时间看季节和天气", time:"13:00", cat:"景点", cn:"松岛海上缆车", kr:"송도해상케이블카", ll:[35.06892,129.02202], img:"songdo", real:true,
+   notes:["从海面上飞过去，有透明地板的车厢","预留约 1 小时","14:00 坐出租车去太宗台的 Age Bakery，约 25 分钟"], book:[["官网","https://www.busanaircruise.co.kr/"]]},
+  {id:"agebakery", hours:"滑索约 09:30–17:20，11:30–12:30 午休（2026 年 10 月重新开业，出发前确认）", time:"14:30", cat:"咖啡 · 体验", cn:"Age Bakery Cafe · 滑索", kr:"부산 영도구 태종로836번길 55", ll:[35.06689,129.06853], approx:true, img:"agebakery", real:true,
+   notes:["原本叫 Thrill on the Mug，现在改名 Age Bakery Cafe，在太宗台海洋飞翔主题乐园（태종대 오션 플라잉 테마파크）2–3 楼","滑索 653 m，从海边悬崖上滑过去，约 30,000 韩元，每 30 分钟一班","体重限制 30–100 kg，提早 15 分钟到","咖啡厅打卡就走，15:30 去海女村（约 10 分钟）"], warn:"滑索 17:20 收工、11:30–12:30 午休，天气不好会停。这个乐园 2026 年 6 月停业过、10 月才重开，出发前一定要再确认营业。", book:[["滑索订票（Trazy）","https://www.trazy.com/experience/detail/busan-taejongdae-ocean-flying-theme-park-ticket"]]},
+  {id:"haenyeo", xhs:"http://xhslink.com/o/9HC7UryQROf", hours:"网上查不到，出发前用 Naver 确认（看天气营业）", time:"15:30 点心", cat:"海鲜", cn:"影岛海女村", kr:"영도 해녀촌", ll:[35.0700,129.0640], approx:true, img:"urchin", real:true,
    notes:["地址：부산 영도구 중리남로 2-35 一带","海胆紫菜包饭、海鲜拉面","晚上还要吃生鱼片，这里吃点心份量就好"], warn:"看天气营业，下午可能已经收了。出发前用 Naver 确认，没开就直接去三进鱼糕。"},
-  {id:"samjin", xhs:"http://xhslink.com/o/3O15ulBVR7o", hours:"09:00–19:00", time:"16:00", cat:"老字号", cn:"三进鱼糕本店", kr:"삼진어묵 본점", ll:[35.0919,129.0416], approx:true, img:"eomuk", real:true,
+  {id:"samjin", xhs:"http://xhslink.com/o/3O15ulBVR7o", hours:"09:00–19:00", time:"16:10", cat:"老字号", cn:"三进鱼糕本店", kr:"삼진어묵 본점", ll:[35.0919,129.0416], approx:true, img:"eomuk", real:true,
    notes:["1953 年开业的鱼糕老店","现吃，或者买伴手礼"]},
-  {id:"huinnyeoul", xhs:"http://xhslink.com/o/AE7nqwGPTy1", hours:"村子全天开放（是住宅区，晚上请小声）", time:"16:40 · 日落", cat:"景点", cn:"白浅滩文化村 · 看日落", kr:"흰여울문화마을", ll:[35.07740,129.04565], img:"huinnyeoul", real:true,
+  {id:"huinnyeoul", xhs:"http://xhslink.com/o/AE7nqwGPTy1", hours:"村子全天开放（是住宅区，晚上请小声）", time:"16:45 · 日落", cat:"景点", cn:"白浅滩文化村 · 看日落", kr:"흰여울문화마을", ll:[35.07740,129.04565], img:"huinnyeoul", real:true,
    notes:["1/7 日落约 17:25，日落前 40 分钟到，边走边拍","村子面向西南边的海，看夕阳刚好","坡道和阶梯多，穿好走的鞋"]},
-  {id:"biff", hours:"路边摊，没有固定时间，大约中午到晚上", time:"18:00", cat:"甜品", cn:"BIFF 广场坚果糖饼", kr:"씨앗호떡", ll:[35.09804,129.02947], img:"hotteok", real:true,
-   notes:["从白浅滩坐出租车约 10 分钟","4 个人先买 2 份分享，等下还要吃晚餐"]},
-  {id:"jagalchi", xhs:"http://xhslink.com/o/58sdNU32w5k", hours:"市场 05:00–22:00；生鱼片中心 09:00 开始", time:"晚餐 A", cat:"海鲜", cn:"札嘎其市场生鱼片", kr:"자갈치시장", ll:[35.09574,129.02512], img:"jagalchi", real:true,
-   notes:["先问清楚生鱼片的种类和重量","问清楚 4 人份到底包含什么、有没有另外收费","吃完回松亭约 50 分钟，出租车约 25,000–30,000 韩元"]},
+  {id:"nampo", hours:"商店大约营业到 21:00–22:00", time:"17:50", cat:"逛街", cn:"逛南浦洞 · 光复路", kr:"광복로 남포동", ll:[35.09930,129.02967], approx:true, icon:"🛍️",
+   notes:["从白浅滩坐出租车约 10 分钟","光复路是南浦洞的购物街，有很多服饰、化妆品、小吃","旁边就是 BIFF 广场，顺路买坚果糖饼"]},
+  {id:"biff", hours:"路边摊，没有固定时间，大约中午到晚上", time:"18:15", cat:"甜品", cn:"BIFF 广场坚果糖饼", kr:"씨앗호떡", ll:[35.09804,129.02947], img:"hotteok", real:true,
+   notes:["就在南浦洞旁边，走路就到","4 个人先买 2 份分享，等下还要吃晚餐"]},
+  {id:"jagalchi", xhs:"http://xhslink.com/o/58sdNU32w5k", hours:"市场 05:00–22:00；生鱼片中心 09:00 开始", time:"18:30 晚餐", cat:"海鲜", cn:"札嘎其市场生鱼片", kr:"자갈치시장", ll:[35.09574,129.02512], img:"jagalchi", real:true,
+   notes:["先问清楚生鱼片的种类和重量","问清楚 4 人份到底包含什么、有没有另外收费","吃完走路约 10 分钟去富平罐头夜市"]},
+  {id:"bupyeong", xhs:"https://www.xiaohongshu.com/explore/6ac2418f00000000100000c3?xsec_token=CBgNy5NYDV5vQLXjOPgk6byahq3D7uJTSP8pLM3OZATIo=&xsec_source=app_share", hours:"晚上约 19:30 开始（出发前确认）", time:"19:45 宵夜", cat:"夜市", cn:"富平罐头夜市（宵夜）", kr:"부평깡통야시장", ll:[35.10190,129.02620], approx:true, icon:"🌙",
+   notes:["从札嘎其市场走路约 10 分钟","一整排小吃摊，吃宵夜、边走边吃","21:00 左右坐出租车回 Airbnb，约 50 分钟（约 25,000–30,000 韩元）"]},
  ]},
  {n:4, date:"1/8（五）", title:"退房 · 早午餐 · 回首尔", sub:"11 点退房，在 Airbnb 附近自己找早午餐，再坐车去釜山站，下午 4 点左右到首尔。", stops:[
   {id:"checkout", time:"11:00", cat:"退房", cn:"退房 · 在松亭附近吃早午餐", kr:"송정해수욕장", ll:[35.17835,129.19697], nopin:true, img:"airbnb", real:true,
@@ -334,6 +342,7 @@ const DAYS = [
 const FOOD = [
  ["🍲 猪肉汤饭","松亭三代汤饭","송정3대국밥","1/5 晚餐","songjeong"],
  ["🥩 猪肉汤饭备选","双胞胎猪肉汤饭","쌍둥이돼지국밥","备选","ssangdungi"],
+ ["🏮 大排档","西面大排档街","서면 포장마차거리","1/5 晚上","pocha"],
  ["🍲 河豚汤","锦水河豚汤","금수복국","1/6 早餐","geumsu"],
  ["🎁 伴手礼","Busan Bada Sand","부산바다샌드","1/6 中午","badasand"],
  ["☕ 咖啡","Café Broni","브로니 청사포","1/6 下午","broni"],
@@ -347,7 +356,8 @@ const FOOD = [
  ["🍙 海胆紫菜包饭","影岛海女村","영도 해녀촌","1/7 下午","haenyeo"],
  ["🍢 鱼糕","三进鱼糕","삼진어묵","1/7 下午","samjin"],
  ["🍡 坚果糖饼","BIFF 广场","씨앗호떡","1/7 晚上","biff"],
- ["🐟 生鱼片","札嘎其市场","자갈치시장","1/7 晚餐 A","jagalchi"],
+ ["🐟 生鱼片","札嘎其市场","자갈치시장","1/7 晚餐","jagalchi"],
+ ["🌙 夜市宵夜","富平罐头夜市","부평깡통야시장","1/7 宵夜","bupyeong"],
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
