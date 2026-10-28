@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Busan 4D3N 地铁指南</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Noto+Sans+SC:wght@400..900&display=swap">
+<style>
+/* Layout: same world as the route page; one card per trip, numbered-by-order steps inside, line colour on each ride */
+:root{
+  --bg:#eef3f4; --surface:#ffffff; --ink:#122636; --muted:#56697a; --line:#d5dfe3;
+  --accent:#e2513a; --accent-ink:#ffffff; --sea:#0f6f86; --warn-bg:#fff4e0; --warn-ink:#7a4a00;
+  --d1:#d4561c; --d2:#0f7c96; --d3:#c42a6c; --d4:#4f7f12;
+  --font-display:"Bagel Fat One","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-body:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1820; --surface:#14242f; --ink:#e4edf1; --muted:#9db0bd; --line:#24394a;
+  --accent:#ff6e55; --accent-ink:#1a0d09; --sea:#4fc0d8; --warn-bg:#33270f; --warn-ink:#ffd58a;
+  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1820; --surface:#14242f; --ink:#e4edf1; --muted:#9db0bd; --line:#24394a;
+  --accent:#ff6e55; --accent-ink:#1a0d09; --sea:#4fc0d8; --warn-bg:#33270f; --warn-ink:#ffd58a;
+  --d1:#ff8a4c; --d2:#38bcd9; --d3:#ff5fa0; --d4:#9ccf4a; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:0 56px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;word-break:keep-all}
+a{color:var(--sea)}
+a:focus-visible{outline:2px solid var(--sea);outline-offset:2px;border-radius:999px}
+.hero{padding-block:32px 18px;display:grid;gap:12px}
+.hero h1{font-family:var(--font-body);font-weight:900;font-size:clamp(36px,10vw,56px);line-height:1.05;letter-spacing:.02em}
+.hero p{color:var(--muted);font-size:14.5px;max-width:52ch}
+.tips{display:grid;gap:10px;padding:16px 18px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line)}
+.tips h2{font-size:16px;font-weight:800}
+.tips ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14px}
+.lines{display:flex;flex-wrap:wrap;gap:8px}
+.lines span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.lines i{display:inline-block;width:22px;height:6px;border-radius:3px}
+nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-inline:-16px;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.days::-webkit-scrollbar{display:none}
+nav.days a{flex:none;display:inline-flex;align-items:center;min-height:38px;text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;padding:6px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+nav.days a .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px}
+nav.days a:first-child{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.day{margin-top:40px;display:grid;gap:16px}
+.dhead{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.dn{font-family:var(--font-display);font-size:clamp(40px,11vw,56px);line-height:.85;color:var(--dc)}
+.date{font-size:20px;font-weight:800}
+.trip{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:grid;gap:12px}
+.trip header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.trip h3{font-size:17px;font-weight:800;line-height:1.4}
+.rec{font-size:12.5px;font-weight:800;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.rec-metro{background:color-mix(in srgb,#3aa63a 16%,var(--surface));color:color-mix(in srgb,#3aa63a 70%,var(--ink))}
+.rec-taxi{background:var(--warn-bg);color:var(--warn-ink)}
+.rec-either{background:color-mix(in srgb,var(--sea) 14%,var(--surface));color:var(--sea)}
+.why{font-size:14px;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s}
+.st{display:grid;grid-template-columns:58px minmax(0,1fr);gap:12px;align-items:start;padding:10px 0;position:relative}
+.st + .st{border-top:1px dashed var(--line)}
+.st .ico{justify-self:center;font-size:20px;line-height:1.3}
+.st .ico.line{font-size:12px;font-weight:800;color:#fff;background:var(--lc);border-radius:8px;padding:4px 6px;text-align:center;white-space:nowrap}
+.st.ride .fromto{font-size:15.5px}
+.st.ride .meta{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.st.walk div,.st.xfer div{font-size:14px}
+.sum{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px}
+.sum span{font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+footer{margin-top:36px;font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>地铁指南 🚇</h1>
+    <p>哪几段可以坐地铁、怎么坐、在哪里换车、大概多少钱。住在松亭 Airbnb，最近的站是东海线 <b>송정 松亭站</b>，走路约 7 分钟。</p>
+    <div class="tips">
+      <h2>💡 坐地铁前先看</h2>
+      <ul>
+        <li><b>用 WOWPASS 或 T-money 交通卡</b>，进出站都要刷；换车在 30 分钟内有转乘优惠</li>
+        <li><b>价钱</b>：釜山地铁成人刷卡约 <b>1,600 韩元</b>起（2024 年资料），换东海线约 1,700–1,900 韩元，4 个人一趟约 7,000 韩元</li>
+        <li>出租车同样距离大约 <b>25,000–30,000 韩元</b>，没带行李的话地铁划算很多</li>
+        <li>出发前用 <b>Naver Map</b> 或 <b>Kakao Metro</b> App 查实时班次；晚上末班车大约 23:00–24:00，记得确认</li>
+      </ul>
+      <div class="lines"><span><i style="background:#f06a00"></i>1 号线（橘）</span><span><i style="background:#3aa63a"></i>2 号线（绿）</span><span><i style="background:#1f63b5"></i>东海线（蓝）</span></div>
+    </div>
+  </header>
+  <nav class="days" aria-label="跳到">
+    <a href="./">← 行程主页</a>
+    <a href="#day1"><span class="dot" style="background:var(--d1)"></span>Day 1</a><a href="#day2"><span class="dot" style="background:var(--d2)"></span>Day 2</a><a href="#day3"><span class="dot" style="background:var(--d3)"></span>Day 3</a><a href="#day4"><span class="dot" style="background:var(--d4)"></span>Day 4</a>
+    <a href="route.html">🚕 路线表</a>
+  </nav>
+  <section id="day1" class="day" style="--dc:var(--d1)">
+    <header class="dhead"><div class="dn">DAY 1</div><h2 class="date">1/5（二）</h2></header>
+      <article class="trip">
+        <header><h3>🚉 釜山站 → 🍲 西面（松亭三代汤饭）</h3><span class="rec rec-taxi">🚕 建议坐出租车</span></header>
+        <p class="why">带着 4 个大行李箱，坐 Venti 大型车比较轻松；地铁也只要 6 站</p>
+        <ol class="steps"><li class="st ride" style="--lc:#f06a00"><span class="ico line">1号线</span><div><div class="fromto"><b>부산역 釜山站</b> → <b>서면 西面</b></div><div class="meta">往「노포 老圃」方向 · 坐 6 站 · 约 12 分钟</div></div></li><li class="st walk"><span class="ico">🚶</span><div>서면站 1 号出口附近，走路约 5 分钟到松亭三代汤饭</div></li></ol>
+        <div class="sum"><span>⏱️ 约 20 分钟</span><span>💰 约 1,600 韩元／人</span></div>
+      </article>
+      <article class="trip">
+        <header><h3>🏮 西面大排档 → 🏠 Airbnb</h3><span class="rec rec-taxi">🚕 建议坐出租车</span></header>
+        <p class="why">晚上 20:45 拖着行李要换车，建议坐 Venti；没行李的话地铁很划算</p>
+        <ol class="steps"><li class="st ride" style="--lc:#f06a00"><span class="ico line">1号线</span><div><div class="fromto"><b>서면 西面</b> → <b>부전 釜田</b></div><div class="meta">往「노포 老圃」方向 · 坐 1 站 · 约 2 分钟</div></div></li><li class="st xfer"><span class="ico">🔄</span><div><b>换车</b>　出站走到旁边的东海线 부전 釜田站，约 5 分钟</div></li><li class="st ride" style="--lc:#1f63b5"><span class="ico line">东海线</span><div><div class="fromto"><b>부전 釜田</b> → <b>송정 松亭</b></div><div class="meta">往「태화강 太和江 / 일광 日光」方向 · 坐 11 站 · 约 35 分钟</div></div></li><li class="st walk"><span class="ico">🚶</span><div>松亭站出来走路约 7 分钟（400 m）到 Airbnb</div></li></ol>
+        <div class="sum"><span>⏱️ 约 55 分钟</span><span>💰 约 1,700–1,900 韩元／人</span></div>
+      </article>
+  </section>
+  <section id="day2" class="day" style="--dc:var(--d2)">
+    <header class="dhead"><div class="dn">DAY 2</div><h2 class="date">1/6（三）</h2></header>
+      <article class="trip">
+        <header><h3>🏠 Airbnb → 🍲 海云台（锦水河豚汤）</h3><span class="rec rec-taxi">🚕 建议坐出租车</span></header>
+        <p class="why">东海线的 신해운대 新海云台站离海云台海滩很远，出租车只要 12 分钟</p>
+        
+        <div class="sum"><span>⏱️ 出租车约 12 分钟</span><span>💰 出租车约 7,000 韩元（4 人分摊）</span></div>
+      </article>
+      <article class="trip">
+        <header><h3>🍖 海云台母牛排骨 → 🛥️ 游艇集合点</h3><span class="rec rec-either">🔁 地铁、出租车都可以</span></header>
+        <p class="why">地铁不怕塞车；出租车约 20 分钟、比较直接</p>
+        <ol class="steps"><li class="st walk"><span class="ico">🚶</span><div>从餐厅走到 해운대 海云台站，约 5 分钟</div></li><li class="st ride" style="--lc:#3aa63a"><span class="ico line">2号线</span><div><div class="fromto"><b>해운대 海云台</b> → <b>금련산 金莲山</b></div><div class="meta">往「양산 梁山」方向 · 坐 7 站 · 约 15 分钟</div></div></li><li class="st walk"><span class="ico">🚶</span><div>3 号出口出来，走路约 10 分钟（700 m）到广安里海洋休闲运动中心</div></li></ol>
+        <div class="sum"><span>⏱️ 约 30 分钟</span><span>💰 约 1,600 韩元／人</span></div>
+      </article>
+      <article class="trip">
+        <header><h3>🌃 广安里 → 🏠 Airbnb</h3><span class="rec rec-metro">✅ 推荐坐地铁</span></header>
+        <p class="why">晚上回家最划算，4 个人只要约 7,000 韩元</p>
+        <ol class="steps"><li class="st walk"><span class="ico">🚶</span><div>从广安里海边走到 광안 广安站，约 8 分钟</div></li><li class="st ride" style="--lc:#3aa63a"><span class="ico line">2号线</span><div><div class="fromto"><b>광안 广安</b> → <b>벡스코 BEXCO</b></div><div class="meta">往「장산 萇山」方向 · 坐 4 站 · 约 8 分钟</div></div></li><li class="st xfer"><span class="ico">🔄</span><div><b>换车</b>　在 벡스코 BEXCO 站换东海线，跟着「동해선」指示走，约 5 分钟</div></li><li class="st ride" style="--lc:#1f63b5"><span class="ico line">东海线</span><div><div class="fromto"><b>벡스코 BEXCO</b> → <b>송정 松亭</b></div><div class="meta">往「태화강 太和江 / 일광 日光」方向 · 坐 2 站 · 约 6 分钟</div></div></li><li class="st walk"><span class="ico">🚶</span><div>松亭站出来走路约 7 分钟（400 m）到 Airbnb</div></li></ol>
+        <div class="sum"><span>⏱️ 约 40 分钟</span><span>💰 约 1,700–1,900 韩元／人</span></div>
+      </article>
+  </section>
+  <section id="day3" class="day" style="--dc:var(--d3)">
+    <header class="dhead"><div class="dn">DAY 3</div><h2 class="date">1/7（四）</h2></header>
+      <article class="trip">
+        <header><h3>🏠 Airbnb → 🍜 西面（冷小麦面）</h3><span class="rec rec-metro">✅ 推荐坐地铁</span></header>
+        <p class="why">早上没行李，坐东海线到终点站，不怕塞车又便宜</p>
+        <ol class="steps"><li class="st walk"><span class="ico">🚶</span><div>走路约 7 分钟（400 m）到 송정 松亭站（东海线）</div></li><li class="st ride" style="--lc:#1f63b5"><span class="ico line">东海线</span><div><div class="fromto"><b>송정 松亭</b> → <b>부전 釜田（终点站）</b></div><div class="meta">往「부전 釜田」方向 · 坐 11 站 · 约 35 分钟</div></div></li><li class="st walk"><span class="ico">🚶</span><div>从 부전 釜田站走路约 12 分钟到西面；或换 1 号线坐 1 站到 서면 西面</div></li></ol>
+        <div class="sum"><span>⏱️ 约 50 分钟</span><span>💰 约 1,700–1,900 韩元／人</span></div>
+      </article>
+      <article class="trip">
+        <header><h3>🥭 西面 → 🚡 松岛 → 影岛各站</h3><span class="rec rec-taxi">🚕 建议坐出租车</span></header>
+        <p class="why">松岛和影岛没有地铁直达，这一段都坐出租车（每段约 10–30 分钟）</p>
+        
+        <div class="sum"><span>⏱️ 每段约 10–30 分钟</span><span>💰 出租车每段约 6,000–15,000 韩元（4 人分摊）</span></div>
+      </article>
+      <article class="trip">
+        <header><h3>🌙 富平罐头夜市 → 🏠 Airbnb</h3><span class="rec rec-either">🔁 地铁、出租车都可以</span></header>
+        <p class="why">地铁比出租车慢约 15 分钟，但 4 个人可以省下 2 万韩元左右</p>
+        <ol class="steps"><li class="st walk"><span class="ico">🚶</span><div>从夜市走到 자갈치 札嘎其站，约 8 分钟</div></li><li class="st ride" style="--lc:#f06a00"><span class="ico line">1号线</span><div><div class="fromto"><b>자갈치 札嘎其</b> → <b>교대 教大</b></div><div class="meta">往「노포 老圃」方向 · 坐 14 站 · 约 30 分钟</div></div></li><li class="st xfer"><span class="ico">🔄</span><div><b>换车</b>　在 교대 教大站换东海线，约 5 分钟</div></li><li class="st ride" style="--lc:#1f63b5"><span class="ico line">东海线</span><div><div class="fromto"><b>교대 教大</b> → <b>송정 松亭</b></div><div class="meta">往「태화강 太和江 / 일광 日光」方向 · 坐 8 站 · 约 18 分钟</div></div></li><li class="st walk"><span class="ico">🚶</span><div>松亭站出来走路约 7 分钟到 Airbnb</div></li></ol>
+        <div class="sum"><span>⏱️ 约 60–65 分钟</span><span>💰 约 1,700–1,900 韩元／人</span></div>
+      </article>
+  </section>
+  <section id="day4" class="day" style="--dc:var(--d4)">
+    <header class="dhead"><div class="dn">DAY 4</div><h2 class="date">1/8（五）</h2></header>
+      <article class="trip">
+        <header><h3>🏠 Airbnb → 🚉 釜山站（坐 KTX）</h3><span class="rec rec-taxi">🚕 建议坐出租车</span></header>
+        <p class="why">退房带着 4 个大行李箱，要换车、上下楼梯，建议坐 Venti 大型车</p>
+        <ol class="steps"><li class="st walk"><span class="ico">🚶</span><div>走路约 7 分钟（400 m）到 송정 松亭站</div></li><li class="st ride" style="--lc:#1f63b5"><span class="ico line">东海线</span><div><div class="fromto"><b>송정 松亭</b> → <b>교대 教大</b></div><div class="meta">往「부전 釜田」方向 · 坐 8 站 · 约 18 分钟</div></div></li><li class="st xfer"><span class="ico">🔄</span><div><b>换车</b>　在 교대 教大站换 1 号线，约 5 分钟</div></li><li class="st ride" style="--lc:#f06a00"><span class="ico line">1号线</span><div><div class="fromto"><b>교대 教大</b> → <b>부산역 釜山站</b></div><div class="meta">往「다대포해수욕장 多大浦海水浴场」方向 · 坐 11 站 · 约 25 分钟</div></div></li><li class="st walk"><span class="ico">🚶</span><div>KTX 在釜山站 2 楼，跟着「KTX」指示走</div></li></ol>
+        <div class="sum"><span>⏱️ 约 55–60 分钟</span><span>💰 约 1,700–1,900 韩元／人</span></div>
+      </article>
+  </section>
+  <footer>站数、时间和价钱是按路线图估算的，出发前用 Naver Map 再确认一次。</footer>
+</div>
+</body>
+</html>
